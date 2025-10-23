@@ -1,19 +1,61 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useMemo } from 'react';
+import { categories, products } from '@/lib/data';
+import { useCartStore } from '@/hooks/useCartStore';
+import { useBranchStore } from '@/hooks/useBranchStore';
+import { QuantityControl } from '@/components/QuantityControl';
+import type { Product } from '@/lib/types';
 
-import { MadeWithDyad } from "@/components/made-with-dyad";
+export default function MenuPage() {
+  const { selectedBranch } = useBranchStore();
+  const { items, addItem, removeItem } = useCartStore();
 
-const Index = () => {
+  const activeCategories = useMemo(() => {
+    const activeProductCategoryIds = new Set(
+      products.filter(p => p.status === 'active').map(p => p.categoryId)
+    );
+    return categories
+      .filter(c => c.status === 'active' && activeProductCategoryIds.has(c.id))
+      .sort((a, b) => a.order - b.order);
+  }, []);
+
+  const getQuantity = (productId: string) => {
+    return items.find(item => item.id === productId)?.quantity || 0;
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
-        </p>
+    <div className="mx-auto max-w-md p-4">
+      <header className="mb-4">
+        <h1 className="text-2xl font-bold">Menú Digital</h1>
+        <p className="text-muted-foreground">Sucursal: {selectedBranch?.name}</p>
+      </header>
+
+      <div className="space-y-6">
+        {activeCategories.map(category => (
+          <section key={category.id}>
+            <h2 className="mb-2 text-xl font-semibold">{category.name}</h2>
+            <div className="divide-y dark:divide-gray-700">
+              {products
+                .filter(p => p.categoryId === category.id && p.status === 'active')
+                .map(product => (
+                  <div key={product.id} className="flex items-center justify-between py-3">
+                    <div className="flex-1 pr-4">
+                      <h3 className="font-medium">{product.name}</h3>
+                      {product.description && (
+                        <p className="text-sm text-muted-foreground">{product.description}</p>
+                      )}
+                      <p className="text-sm font-semibold">${product.price.toFixed(2)}</p>
+                    </div>
+                    <QuantityControl
+                      quantity={getQuantity(product.id)}
+                      onAdd={() => addItem(product as Product)}
+                      onRemove={() => removeItem(product.id)}
+                    />
+                  </div>
+                ))}
+            </div>
+          </section>
+        ))}
       </div>
-      <MadeWithDyad />
     </div>
   );
-};
-
-export default Index;
+}
