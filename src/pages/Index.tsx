@@ -34,8 +34,12 @@ export default function MenuPage() {
 
   return (
     <div className="mx-auto max-w-md p-4">
-      <header className="mb-4">
-        <h1 className="text-2xl font-bold">Menu Fatboy</h1>
+      <header className="mb-8 text-center">
+        <img 
+          src="/logo.png" 
+          alt="Menu Fatboy Logo" 
+          className="mx-auto w-48 h-auto" 
+        />
       </header>
 
       <div className="space-y-6">
