@@ -23,3 +23,8 @@ export interface Branch {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export interface CustomerDetails {
+  customerName: string;
+  customerPhone: string;
+}

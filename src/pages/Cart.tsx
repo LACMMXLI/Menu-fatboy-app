@@ -1,17 +1,36 @@
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useCartStore } from '@/hooks/useCartStore';
 import { useBranchStore } from '@/hooks/useBranchStore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { QuantityControl } from '@/components/QuantityControl';
 import { buildWhatsAppLink } from '@/utils/whatsapp';
 import { showError } from '@/utils/toast';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+
+const customerDetailsSchema = z.object({
+  customerName: z.string().min(2, 'El nombre es obligatorio.'),
+  customerPhone: z.string().regex(/^\d{10,15}$/, 'El teléfono debe tener entre 10 y 15 dígitos.'),
+});
+
+type CustomerDetailsForm = z.infer<typeof customerDetailsSchema>;
 
 export default function CartPage() {
-  const { items, customerName, setCustomerName, addItem, removeItem, subtotal } = useCartStore();
+  const { items, customerName, customerPhone, addItem, removeItem, subtotal, setCustomerDetails } = useCartStore();
   const { selectedBranch } = useBranchStore();
 
-  const handleConfirm = () => {
+  const form = useForm<CustomerDetailsForm>({
+    resolver: zodResolver(customerDetailsSchema),
+    defaultValues: {
+      customerName: customerName,
+      customerPhone: customerPhone,
+    },
+    mode: 'onBlur',
+  });
+
+  const onSubmit = (values: CustomerDetailsForm) => {
     if (!selectedBranch) {
       showError("Error: No hay sucursal seleccionada.");
       return;
@@ -20,9 +39,29 @@ export default function CartPage() {
       showError("Tu carrito está vacío.");
       return;
     }
-    const url = buildWhatsAppLink(selectedBranch, items, customerName, subtotal());
+
+    // Guardar detalles en el store
+    setCustomerDetails(values);
+
+    const url = buildWhatsAppLink(
+      selectedBranch,
+      items,
+      values.customerName,
+      values.customerPhone,
+      subtotal()
+    );
     window.open(url, '_blank');
   };
+
+  // Sincronizar el store con el formulario si el usuario navega
+  form.watch((data) => {
+    if (data.customerName !== customerName || data.customerPhone !== customerPhone) {
+      setCustomerDetails({
+        customerName: data.customerName || '',
+        customerPhone: data.customerPhone || '',
+      });
+    }
+  });
 
   return (
     <div className="mx-auto max-w-md p-4">
@@ -48,24 +87,45 @@ export default function CartPage() {
               </div>
             ))}
           </div>
-          <div className="mt-6 space-y-4 border-t pt-6 dark:border-gray-700">
-            <div>
-              <Label htmlFor="customerName">Nombre (opcional)</Label>
-              <Input
-                id="customerName"
-                placeholder="Para identificar tu pedido"
-                value={customerName}
-                onChange={(e) => setCustomerName(e.target.value)}
+          
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 space-y-4 border-t pt-6 dark:border-gray-700">
+              <h2 className="text-xl font-semibold">Datos de Contacto</h2>
+              
+              <FormField
+                control={form.control}
+                name="customerName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nombre</FormLabel>
+                    <FormControl><Input placeholder="Tu nombre completo" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="flex justify-between text-lg font-bold">
-              <span>Subtotal:</span>
-              <span>${subtotal().toFixed(2)}</span>
-            </div>
-            <Button onClick={handleConfirm} className="w-full py-6 text-lg">
-              Confirmar y Enviar por WhatsApp
-            </Button>
-          </div>
+              
+              <FormField
+                control={form.control}
+                name="customerPhone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Teléfono (WhatsApp)</FormLabel>
+                    <FormControl><Input type="tel" placeholder="Ej: 6861234567" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="flex justify-between text-lg font-bold pt-4">
+                <span>Subtotal:</span>
+                <span>${subtotal().toFixed(2)}</span>
+              </div>
+              
+              <Button type="submit" className="w-full py-6 text-lg">
+                Confirmar y Enviar por WhatsApp
+              </Button>
+            </form>
+          </Form>
         </>
       )}
     </div>
