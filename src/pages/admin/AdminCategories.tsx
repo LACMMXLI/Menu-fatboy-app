@@ -1,20 +1,27 @@
-import { useCategoryStore } from '@/hooks/useCategoryStore';
+import { useCategories, useDeleteCategory } from '@/hooks/useCategories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AdminCategoryDialog } from '@/components/admin/AdminCategoryDialog';
 import { DeleteConfirmationDialog } from '@/components/admin/DeleteConfirmationDialog';
-import { showSuccess } from '@/utils/toast';
+import { Loader2 } from 'lucide-react';
 
 export default function AdminCategories() {
-  const { categories, deleteCategory } = useCategoryStore();
-  const sortedCategories = [...categories].sort((a, b) => a.order - b.order);
+  const { data: categories, isLoading, isError } = useCategories();
+  const deleteMutation = useDeleteCategory();
 
   const handleDelete = (categoryId: string, categoryName: string) => {
-    deleteCategory(categoryId);
-    showSuccess(`Categoría "${categoryName}" eliminada.`);
+    deleteMutation.mutate(categoryId);
   };
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center h-64"><Loader2 className="h-8 w-8 animate-spin" /></div>;
+  }
+
+  if (isError || !categories) {
+    return <div className="text-center text-destructive">Error al cargar las categorías.</div>;
+  }
 
   return (
     <Card>
@@ -35,7 +42,7 @@ export default function AdminCategories() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sortedCategories.map((category) => (
+            {categories.map((category) => (
               <TableRow key={category.id}>
                 <TableCell>{category.order}</TableCell>
                 <TableCell className="font-medium">{category.name}</TableCell>

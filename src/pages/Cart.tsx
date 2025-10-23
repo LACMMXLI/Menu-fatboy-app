@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCartStore } from '@/hooks/useCartStore';
 import { useBranchStore } from '@/hooks/useBranchStore';
+import { useBranches } from '@/hooks/useBranches';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { QuantityControl } from '@/components/QuantityControl';
@@ -12,6 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
+import { Loader2 } from 'lucide-react';
 
 const customerDetailsSchema = z.object({
   customerName: z.string().min(2, 'El nombre es obligatorio.'),
@@ -24,7 +26,8 @@ type CustomerDetailsForm = z.infer<typeof customerDetailsSchema>;
 export default function CartPage() {
   const navigate = useNavigate();
   const { items, customerName, customerPhone, addItem, removeItem, subtotal, setCustomerDetails, clearCart } = useCartStore();
-  const { branches, selectedBranch, selectBranch } = useBranchStore();
+  const { selectedBranch, selectBranch } = useBranchStore();
+  const { data: branches, isLoading: isLoadingBranches } = useBranches();
 
   const form = useForm<CustomerDetailsForm>({
     resolver: zodResolver(customerDetailsSchema),
@@ -36,10 +39,10 @@ export default function CartPage() {
     mode: 'onBlur',
   });
 
-  const currentBranch = form.watch('branchId') ? branches.find(b => b.id === form.watch('branchId')) : null;
+  const currentBranch = branches?.find(b => b.id === form.watch('branchId')) || null;
 
   const onSubmit = (values: CustomerDetailsForm) => {
-    const branch = branches.find(b => b.id === values.branchId);
+    const branch = branches?.find(b => b.id === values.branchId);
     
     if (!branch) {
       showError("Error: Sucursal no válida.");
@@ -52,7 +55,7 @@ export default function CartPage() {
 
     // 1. Guardar detalles y sucursal seleccionada en el store
     setCustomerDetails({ customerName: values.customerName, customerPhone: values.customerPhone });
-    selectBranch(values.branchId);
+    selectBranch(branch); // Guardamos el objeto branch completo
 
     // 2. Abrir WhatsApp
     const url = buildWhatsAppLink(
@@ -83,10 +86,17 @@ export default function CartPage() {
       });
     }
     // Actualizar la sucursal seleccionada en el store
-    if (currentBranchId && currentBranchId !== selectedBranch?.id) {
-      selectBranch(currentBranchId);
+    if (currentBranchId && currentBranchId !== selectedBranch?.id && branches) {
+      const branch = branches.find(b => b.id === currentBranchId);
+      if (branch) {
+        selectBranch(branch);
+      }
     }
   });
+
+  if (isLoadingBranches) {
+    return <div className="mx-auto max-w-md p-4 text-center pt-20"><Loader2 className="h-8 w-8 animate-spin mx-auto" /> <p className="mt-2">Cargando sucursales...</p></div>;
+  }
 
   return (
     <div className="mx-auto max-w-md p-4">
@@ -140,7 +150,7 @@ export default function CartPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {branches.map(branch => (
+                        {branches?.map(branch => (
                           <SelectItem key={branch.id} value={branch.id}>
                             {branch.name}
                           </SelectItem>

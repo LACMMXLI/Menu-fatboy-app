@@ -1,16 +1,21 @@
 import { useMemo } from 'react';
 import { useCartStore } from '@/hooks/useCartStore';
-import { useCategoryStore } from '@/hooks/useCategoryStore';
-import { useProductStore } from '@/hooks/useProductStore';
+import { useCategories } from '@/hooks/useCategories';
+import { useProducts } from '@/hooks/useProducts';
 import { QuantityControl } from '@/components/QuantityControl';
 import type { Product } from '@/lib/types';
+import { Loader2 } from 'lucide-react';
 
 export default function MenuPage() {
   const { items, addItem, removeItem } = useCartStore();
-  const { categories } = useCategoryStore();
-  const { products } = useProductStore();
+  const { data: categories, isLoading: isLoadingCategories } = useCategories();
+  const { data: products, isLoading: isLoadingProducts } = useProducts();
+
+  const isLoading = isLoadingCategories || isLoadingProducts;
 
   const activeCategories = useMemo(() => {
+    if (!categories || !products) return [];
+    
     const activeProductCategoryIds = new Set(
       products.filter(p => p.status === 'active').map(p => p.categoryId)
     );
@@ -22,6 +27,10 @@ export default function MenuPage() {
   const getQuantity = (productId: string) => {
     return items.find(item => item.id === productId)?.quantity || 0;
   };
+
+  if (isLoading) {
+    return <div className="mx-auto max-w-md p-4 text-center pt-20"><Loader2 className="h-8 w-8 animate-spin mx-auto" /> <p className="mt-2">Cargando menú...</p></div>;
+  }
 
   return (
     <div className="mx-auto max-w-md p-4">

@@ -1,15 +1,14 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCategoryStore } from '@/hooks/useCategoryStore';
+import { useAddCategory, useUpdateCategory } from '@/hooks/useCategories';
 import type { Category } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useState } from 'react';
-import { showSuccess } from '@/utils/toast';
+import { useState, useEffect } from 'react';
 
 const categorySchema = z.object({
   name: z.string().min(1, 'El nombre es requerido.'),
@@ -23,7 +22,8 @@ interface AdminCategoryDialogProps {
 }
 
 export function AdminCategoryDialog({ children, category }: AdminCategoryDialogProps) {
-  const { addCategory, updateCategory } = useCategoryStore();
+  const addMutation = useAddCategory();
+  const updateMutation = useUpdateCategory();
   const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof categorySchema>>({
@@ -35,18 +35,27 @@ export function AdminCategoryDialog({ children, category }: AdminCategoryDialogP
     },
   });
 
+  // Reset form when dialog opens/closes or category changes
+  useEffect(() => {
+    if (isOpen) {
+      form.reset({
+        name: category?.name || '',
+        order: category?.order || 1,
+        status: category?.status || 'active',
+      });
+    }
+  }, [isOpen, category, form]);
+
   const onSubmit = (values: z.infer<typeof categorySchema>) => {
     if (category) {
-      updateCategory({ ...category, ...values });
-      showSuccess('Categoría actualizada');
+      updateMutation.mutate({ ...category, ...values });
     } else {
-      // The `values` object is validated by Zod, so we can safely assert its type.
-      addCategory(values as Omit<Category, 'id'>);
-      showSuccess('Categoría creada');
+      addMutation.mutate(values as Omit<Category, 'id'>);
     }
-    form.reset();
     setIsOpen(false);
   };
+
+  const isSubmitting = addMutation.isPending || updateMutation.isPending;
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -96,7 +105,10 @@ export function AdminCategoryDialog({ children, category }: AdminCategoryDialogP
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">{category ? 'Guardar Cambios' : 'Crear'}</Button>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+              {category ? 'Guardar Cambios' : 'Crear'}
+            </Button>
           </form>
         </Form>
       </DialogContent>

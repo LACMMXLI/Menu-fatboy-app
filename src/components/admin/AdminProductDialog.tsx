@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useProductStore } from '@/hooks/useProductStore';
-import { useCategoryStore } from '@/hooks/useCategoryStore';
+import { useAddProduct, useUpdateProduct } from '@/hooks/useProducts';
+import { useCategories } from '@/hooks/useCategories';
 import type { Product } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -10,8 +10,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
-import { showSuccess } from '@/utils/toast';
+import { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 
 const productSchema = z.object({
   name: z.string().min(1, 'El nombre es requerido.'),
@@ -27,8 +27,9 @@ interface AdminProductDialogProps {
 }
 
 export function AdminProductDialog({ children, product }: AdminProductDialogProps) {
-  const { addProduct, updateProduct } = useProductStore();
-  const { categories } = useCategoryStore();
+  const addMutation = useAddProduct();
+  const updateMutation = useUpdateProduct();
+  const { data: categories, isLoading: isLoadingCategories } = useCategories();
   const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm<z.infer<typeof productSchema>>({
@@ -42,18 +43,33 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
     },
   });
 
+  // Reset form when dialog opens/closes or product changes
+  useEffect(() => {
+    if (isOpen) {
+      form.reset({
+        name: product?.name || '',
+        price: product?.price || 0,
+        categoryId: product?.categoryId || '',
+        status: product?.status || 'active',
+        description: product?.description || '',
+      });
+    }
+  }, [isOpen, product, form]);
+
   const onSubmit = (values: z.infer<typeof productSchema>) => {
     if (product) {
-      updateProduct({ ...product, ...values });
-      showSuccess('Producto actualizado');
+      updateMutation.mutate({ ...product, ...values });
     } else {
-      // The `values` object is validated by Zod, so we can safely assert its type.
-      addProduct(values as Omit<Product, 'id'>);
-      showSuccess('Producto creado');
+      addMutation.mutate(values as Omit<Product, 'id'>);
     }
-    form.reset();
     setIsOpen(false);
   };
+
+  const isSubmitting = addMutation.isPending || updateMutation.isPending;
+
+  if (isLoadingCategories) {
+    return <Button disabled><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Cargando...</Button>;
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -76,7 +92,7 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl><SelectTrigger><SelectValue placeholder="Selecciona una categoría" /></SelectTrigger></FormControl>
                   <SelectContent>
-                    {categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+                    {categories?.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -98,7 +114,10 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
             <FormField name="description" control={form.control} render={({ field }) => (
               <FormItem><FormLabel>Descripción (opcional)</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>
             )} />
-            <Button type="submit" className="w-full">{product ? 'Guardar Cambios' : 'Crear'}</Button>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+              {product ? 'Guardar Cambios' : 'Crear'}
+            </Button>
           </form>
         </Form>
       </DialogContent>
