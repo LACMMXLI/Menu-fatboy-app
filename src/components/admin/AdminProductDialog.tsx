@@ -47,7 +47,8 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
       updateProduct({ ...product, ...values });
       showSuccess('Producto actualizado');
     } else {
-      addProduct(values);
+      // The `values` object is validated by Zod, so we can safely assert its type.
+      addProduct(values as Omit<Product, 'id'>);
       showSuccess('Producto creado');
     }
     form.reset();

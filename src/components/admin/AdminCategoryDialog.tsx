@@ -40,7 +40,8 @@ export function AdminCategoryDialog({ children, category }: AdminCategoryDialogP
       updateCategory({ ...category, ...values });
       showSuccess('Categoría actualizada');
     } else {
-      addCategory(values);
+      // The `values` object is validated by Zod, so we can safely assert its type.
+      addCategory(values as Omit<Category, 'id'>);
       showSuccess('Categoría creada');
     }
     form.reset();
