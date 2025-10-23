@@ -35,7 +35,7 @@ export default function MenuPage() {
   return (
     <div className="mx-auto max-w-md p-4">
       <header className="mb-4">
-        <h1 className="text-2xl font-bold">Menú Digital</h1>
+        <h1 className="text-2xl font-bold">Menu Fatboy</h1>
       </header>
 
       <div className="space-y-6">
