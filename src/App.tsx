@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/Cart";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import { Layout } from "./components/Layout";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminCategories from "./pages/admin/AdminCategories";
@@ -24,6 +25,7 @@ const App = () => (
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/confirmation" element={<OrderConfirmation />} />
           </Route>
 
           {/* Admin Routes */}

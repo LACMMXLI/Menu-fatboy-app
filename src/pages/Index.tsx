@@ -1,10 +1,8 @@
 import { useMemo } from 'react';
 import { useCartStore } from '@/hooks/useCartStore';
-import { useBranchStore } from '@/hooks/useBranchStore';
 import { useCategoryStore } from '@/hooks/useCategoryStore';
 import { useProductStore } from '@/hooks/useProductStore';
 import { QuantityControl } from '@/components/QuantityControl';
-import { FloatingCartButton } from '@/components/FloatingCartButton';
 import type { Product } from '@/lib/types';
 
 export default function MenuPage() {
@@ -58,8 +56,6 @@ export default function MenuPage() {
           </section>
         ))}
       </div>
-      
-      <FloatingCartButton />
     </div>
   );
 }

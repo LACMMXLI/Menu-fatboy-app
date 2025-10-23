@@ -5,14 +5,21 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AdminProductDialog } from '@/components/admin/AdminProductDialog';
+import { DeleteConfirmationDialog } from '@/components/admin/DeleteConfirmationDialog';
+import { showSuccess } from '@/utils/toast';
 
 export default function AdminProducts() {
-  const { products } = useProductStore();
+  const { products, deleteProduct } = useProductStore();
   const { categories } = useCategoryStore();
 
   const getCategoryName = (categoryId: string) => {
     return categories.find(c => c.id === categoryId)?.name || 'N/A';
   }
+
+  const handleDelete = (productId: string, productName: string) => {
+    deleteProduct(productId);
+    showSuccess(`Producto "${productName}" eliminado.`);
+  };
 
   return (
     <Card>
@@ -44,10 +51,15 @@ export default function AdminProducts() {
                     {product.status === 'active' ? 'Activo' : 'Inactivo'}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-right flex justify-end space-x-2">
                   <AdminProductDialog product={product}>
                     <Button variant="outline" size="sm">Editar</Button>
                   </AdminProductDialog>
+                  <DeleteConfirmationDialog
+                    title={`¿Estás seguro de eliminar ${product.name}?`}
+                    description="Esta acción no se puede deshacer."
+                    onConfirm={() => handleDelete(product.id, product.name)}
+                  />
                 </TableCell>
               </TableRow>
             ))}

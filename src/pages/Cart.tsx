@@ -10,6 +10,8 @@ import { buildWhatsAppLink } from '@/utils/whatsapp';
 import { showError } from '@/utils/toast';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
 
 const customerDetailsSchema = z.object({
   customerName: z.string().min(2, 'El nombre es obligatorio.'),
@@ -20,7 +22,8 @@ const customerDetailsSchema = z.object({
 type CustomerDetailsForm = z.infer<typeof customerDetailsSchema>;
 
 export default function CartPage() {
-  const { items, customerName, customerPhone, addItem, removeItem, subtotal, setCustomerDetails } = useCartStore();
+  const navigate = useNavigate();
+  const { items, customerName, customerPhone, addItem, removeItem, subtotal, setCustomerDetails, clearCart } = useCartStore();
   const { branches, selectedBranch, selectBranch } = useBranchStore();
 
   const form = useForm<CustomerDetailsForm>({
@@ -32,6 +35,8 @@ export default function CartPage() {
     },
     mode: 'onBlur',
   });
+
+  const currentBranch = form.watch('branchId') ? branches.find(b => b.id === form.watch('branchId')) : null;
 
   const onSubmit = (values: CustomerDetailsForm) => {
     const branch = branches.find(b => b.id === values.branchId);
@@ -45,10 +50,11 @@ export default function CartPage() {
       return;
     }
 
-    // Guardar detalles y sucursal seleccionada en el store
+    // 1. Guardar detalles y sucursal seleccionada en el store
     setCustomerDetails({ customerName: values.customerName, customerPhone: values.customerPhone });
     selectBranch(values.branchId);
 
+    // 2. Abrir WhatsApp
     const url = buildWhatsAppLink(
       branch,
       items,
@@ -57,6 +63,10 @@ export default function CartPage() {
       subtotal()
     );
     window.open(url, '_blank');
+
+    // 3. Limpiar carrito y redirigir
+    clearCart();
+    navigate('/confirmation');
   };
 
   // Sincronizar el store con el formulario si el usuario navega
@@ -85,6 +95,16 @@ export default function CartPage() {
         <p className="text-center text-muted-foreground">El carrito está vacío.</p>
       ) : (
         <>
+          {currentBranch && (
+            <Card className="mb-4 bg-primary/10 dark:bg-primary/20 border-primary dark:border-primary/50">
+              <CardContent className="p-3 text-center">
+                <p className="text-sm font-medium text-primary dark:text-primary-foreground">
+                  Recogerás en: <span className="font-bold">{currentBranch.name}</span>
+                </p>
+              </CardContent>
+            </Card>
+          )}
+
           <div className="divide-y dark:divide-gray-700">
             {items.map(item => (
               <div key={item.id} className="flex items-center justify-between py-3">
