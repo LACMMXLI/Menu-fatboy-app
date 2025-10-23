@@ -62,6 +62,9 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Colores personalizados para el tema Fatboy
+        'yellow-fatboy': '#FFD700', // Amarillo brillante
+        'red-fatboy': '#FF4500', // Rojo anaranjado
       },
       borderRadius: {
         lg: "var(--radius)",

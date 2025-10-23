@@ -45,18 +45,18 @@ export default function MenuPage() {
       <div className="space-y-6">
         {activeCategories.map(category => (
           <section key={category.id}>
-            <h2 className="mb-2 text-xl font-semibold">{category.name}</h2>
-            <div className="divide-y dark:divide-gray-700">
+            <h2 className="mb-2 text-xl font-semibold text-yellow-fatboy">{category.name}</h2>
+            <div className="divide-y divide-gray-800">
               {products
                 .filter(p => p.categoryId === category.id && p.status === 'active')
                 .map(product => (
                   <div key={product.id} className="flex items-center justify-between py-3">
                     <div className="flex-1 pr-4">
-                      <h3 className="font-medium">{product.name}</h3>
+                      <h3 className="font-medium text-yellow-fatboy">{product.name}</h3>
                       {product.description && (
-                        <p className="text-sm text-muted-foreground">{product.description}</p>
+                        <p className="text-sm text-white/80">{product.description}</p>
                       )}
-                      <p className="text-sm font-semibold">${product.price.toFixed(2)}</p>
+                      <p className="text-sm font-semibold text-red-fatboy">${product.price.toFixed(2)}</p>
                     </div>
                     <QuantityControl
                       quantity={getQuantity(product.id)}

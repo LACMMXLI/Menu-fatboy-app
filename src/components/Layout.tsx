@@ -18,11 +18,11 @@ export function Layout() {
   // La selección de sucursal ahora es obligatoria en el formulario del carrito.
 
   return (
-    <div className="flex h-screen w-full flex-col bg-gray-50 dark:bg-gray-950">
+    <div className="flex h-screen w-full flex-col bg-background">
       <main className="flex-1 overflow-y-auto pb-20">
         <Outlet />
       </main>
-      <footer className="fixed bottom-0 left-0 right-0 border-t bg-white dark:bg-black">
+      <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-card">
         <nav className="mx-auto flex h-16 max-w-md items-center justify-around">
           {navItems.map((item) => (
             <NavLink
@@ -30,15 +30,15 @@ export function Layout() {
               to={item.href}
               className={({ isActive }) =>
                 cn(
-                  'flex flex-col items-center gap-1 px-4 text-sm font-medium text-gray-500 hover:text-primary dark:text-gray-400',
-                  isActive && 'text-primary dark:text-white'
+                  'flex flex-col items-center gap-1 px-4 text-sm font-medium text-muted-foreground hover:text-primary',
+                  isActive && 'text-primary'
                 )
               }
             >
               <div className="relative">
                 <item.icon className="h-6 w-6" />
                 {item.href === '/cart' && totalItems() > 0 && (
-                  <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-fatboy text-xs text-white">
                     {totalItems()}
                   </span>
                 )}
