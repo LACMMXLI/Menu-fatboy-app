@@ -7,7 +7,6 @@ import { QuantityControl } from '@/components/QuantityControl';
 import type { Product } from '@/lib/types';
 
 export default function MenuPage() {
-  const { selectedBranch } = useBranchStore();
   const { items, addItem, removeItem } = useCartStore();
   const { categories } = useCategoryStore();
   const { products } = useProductStore();
@@ -29,7 +28,6 @@ export default function MenuPage() {
     <div className="mx-auto max-w-md p-4">
       <header className="mb-4">
         <h1 className="text-2xl font-bold">Menú Digital</h1>
-        <p className="text-muted-foreground">Sucursal: {selectedBranch?.name}</p>
       </header>
 
       <div className="space-y-6">

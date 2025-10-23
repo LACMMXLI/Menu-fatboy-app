@@ -12,24 +12,10 @@ const navItems = [
 ];
 
 export function Layout() {
-  const { selectedBranch } = useBranchStore();
   const { totalItems } = useCartStore();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (!selectedBranch && location.pathname !== '/branch') {
-      navigate('/branch', { replace: true });
-    }
-  }, [selectedBranch, location.pathname, navigate]);
-
-  if (!selectedBranch && location.pathname !== '/branch') {
-    return (
-      <div className="flex h-screen w-full items-center justify-center">
-        <p>Cargando...</p>
-      </div>
-    );
-  }
+  
+  // Eliminamos la lógica de redirección forzada aquí.
+  // La selección de sucursal ahora es obligatoria en el formulario del carrito.
 
   return (
     <div className="flex h-screen w-full flex-col bg-gray-50 dark:bg-gray-950">
