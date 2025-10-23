@@ -1,13 +1,16 @@
 import { useMemo } from 'react';
-import { categories, products } from '@/lib/data';
 import { useCartStore } from '@/hooks/useCartStore';
 import { useBranchStore } from '@/hooks/useBranchStore';
+import { useCategoryStore } from '@/hooks/useCategoryStore';
+import { useProductStore } from '@/hooks/useProductStore';
 import { QuantityControl } from '@/components/QuantityControl';
 import type { Product } from '@/lib/types';
 
 export default function MenuPage() {
   const { selectedBranch } = useBranchStore();
   const { items, addItem, removeItem } = useCartStore();
+  const { categories } = useCategoryStore();
+  const { products } = useProductStore();
 
   const activeCategories = useMemo(() => {
     const activeProductCategoryIds = new Set(
@@ -16,7 +19,7 @@ export default function MenuPage() {
     return categories
       .filter(c => c.status === 'active' && activeProductCategoryIds.has(c.id))
       .sort((a, b) => a.order - b.order);
-  }, []);
+  }, [categories, products]);
 
   const getQuantity = (productId: string) => {
     return items.find(item => item.id === productId)?.quantity || 0;

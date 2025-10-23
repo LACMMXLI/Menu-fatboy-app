@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import BranchSelector from "./pages/BranchSelector";
 import CartPage from "./pages/Cart";
 import { Layout } from "./components/Layout";
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminProducts from "./pages/admin/AdminProducts";
 
 const queryClient = new QueryClient();
 
@@ -18,11 +21,20 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Client Routes */}
           <Route path="/branch" element={<BranchSelector />} />
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
             <Route path="/cart" element={<CartPage />} />
           </Route>
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminCategories />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="products" element={<AdminProducts />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
