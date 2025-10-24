@@ -5,8 +5,9 @@ export interface Product {
   categoryId: string;
   status: "active" | "inactive";
   description?: string;
+  shortDescription?: string; // Nuevo campo
   order: number;
-  isPromotion: boolean; // Nuevo campo
+  isPromotion: boolean;
 }
 
 export interface Category {

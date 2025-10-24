@@ -19,7 +19,8 @@ const productSchema = z.object({
   categoryId: z.string().min(1, 'La categoría es requerida.'),
   status: z.enum(['active', 'inactive']),
   description: z.string().optional(),
-  order: z.coerce.number().min(1, 'El orden debe ser al menos 1.'), // Nuevo campo de orden
+  shortDescription: z.string().optional(), // Nuevo campo
+  order: z.coerce.number().min(1, 'El orden debe ser al menos 1.'),
 });
 
 interface AdminProductDialogProps {
@@ -41,7 +42,8 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
       categoryId: product?.categoryId || '',
       status: product?.status || 'active',
       description: product?.description || '',
-      order: product?.order || 999, // Valor por defecto para el orden
+      shortDescription: product?.shortDescription || '', // Valor por defecto
+      order: product?.order || 999,
     },
   });
 
@@ -54,6 +56,7 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
         categoryId: product?.categoryId || '',
         status: product?.status || 'active',
         description: product?.description || '',
+        shortDescription: product?.shortDescription || '', // Resetear shortDescription
         order: product?.order || 999,
       });
     }
@@ -117,8 +120,11 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
                 <FormMessage />
               </FormItem>
             )} />
+            <FormField name="shortDescription" control={form.control} render={({ field }) => (
+              <FormItem><FormLabel>Descripción Corta (Tipo)</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
             <FormField name="description" control={form.control} render={({ field }) => (
-              <FormItem><FormLabel>Descripción (opcional)</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>
+              <FormItem><FormLabel>Descripción Larga (opcional)</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}

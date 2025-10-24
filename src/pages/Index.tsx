@@ -92,6 +92,9 @@ export default function MenuPage() {
                   <div key={product.id} className="flex items-center justify-between py-3">
                     <div className="flex-1 pr-4">
                       <h3 className="font-medium text-yellow-fatboy">{product.name}</h3>
+                      {product.shortDescription && (
+                        <p className="text-xs font-semibold text-red-fatboy/80 mb-1">{product.shortDescription}</p>
+                      )}
                       {product.description && (
                         <p className="text-sm text-white/80">{product.description}</p>
                       )}
