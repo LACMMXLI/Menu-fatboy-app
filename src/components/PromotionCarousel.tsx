@@ -29,13 +29,11 @@ export function PromotionCarousel({ promotions }: PromotionCarouselProps) {
             <div className="p-1">
               <Card className="bg-card border-yellow-fatboy/50 overflow-hidden">
                 {promo.imageUrl && (
-                  <div className="h-48 w-full overflow-hidden"> {/* Contenedor de altura fija */}
-                    <img 
-                      src={promo.imageUrl} 
-                      alt={promo.name} 
-                      className="w-full h-full object-cover" // La imagen cubre el contenedor
-                    />
-                  </div>
+                  <img 
+                    src={promo.imageUrl} 
+                    alt={promo.name} 
+                    className="w-full h-auto object-cover"
+                  />
                 )}
                 <CardContent className="flex flex-col items-center justify-center p-4 text-center">
                   <h3 className="text-xl font-bold text-yellow-fatboy mb-2">{promo.name}</h3>
