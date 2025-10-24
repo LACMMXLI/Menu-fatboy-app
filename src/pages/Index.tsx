@@ -48,7 +48,8 @@ export default function MenuPage() {
   const filteredProducts = useMemo(() => {
     if (!products || !activeCategoryId) return [];
     return products
-      .filter(p => p.categoryId === activeCategoryId && p.status === 'active');
+      .filter(p => p.categoryId === activeCategoryId && p.status === 'active')
+      .sort((a, b) => a.order - b.order); // Aseguramos el orden por la nueva columna
   }, [products, activeCategoryId]);
 
 

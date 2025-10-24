@@ -19,6 +19,7 @@ const productSchema = z.object({
   categoryId: z.string().min(1, 'La categoría es requerida.'),
   status: z.enum(['active', 'inactive']),
   description: z.string().optional(),
+  order: z.coerce.number().min(1, 'El orden debe ser al menos 1.'), // Nuevo campo de orden
 });
 
 interface AdminProductDialogProps {
@@ -40,6 +41,7 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
       categoryId: product?.categoryId || '',
       status: product?.status || 'active',
       description: product?.description || '',
+      order: product?.order || 999, // Valor por defecto para el orden
     },
   });
 
@@ -52,6 +54,7 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
         categoryId: product?.categoryId || '',
         status: product?.status || 'active',
         description: product?.description || '',
+        order: product?.order || 999,
       });
     }
   }, [isOpen, product, form]);
@@ -85,6 +88,9 @@ export function AdminProductDialog({ children, product }: AdminProductDialogProp
             )} />
             <FormField name="price" control={form.control} render={({ field }) => (
               <FormItem><FormLabel>Precio</FormLabel><FormControl><Input type="number" step="0.01" {...field} /></FormControl><FormMessage /></FormItem>
+            )} />
+            <FormField name="order" control={form.control} render={({ field }) => (
+              <FormItem><FormLabel>Orden de Visualización</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>
             )} />
             <FormField name="categoryId" control={form.control} render={({ field }) => (
               <FormItem>

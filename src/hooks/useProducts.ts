@@ -7,7 +7,8 @@ import { showSuccess, showError } from '@/utils/toast';
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, price, category_id, status, description');
+    .select('id, name, price, category_id, status, description, order')
+    .order('order', { ascending: true }); // Ordenar por el nuevo campo 'order'
 
   if (error) throw new Error(error.message);
   
@@ -18,6 +19,7 @@ const fetchProducts = async (): Promise<Product[]> => {
     categoryId: String(p.category_id),
     status: p.status as Product['status'],
     description: p.description || undefined,
+    order: Number(p.order || 999), // Asegurar que 'order' es un número
   })) as Product[];
 };
 
@@ -42,7 +44,8 @@ export const useAddProduct = () => {
           price: product.price, 
           category_id: product.categoryId, 
           status: product.status, 
-          description: product.description 
+          description: product.description,
+          order: product.order // Incluir el orden en la inserción
         }])
         .select()
         .single();
@@ -72,7 +75,8 @@ export const useUpdateProduct = () => {
           price: product.price, 
           category_id: product.categoryId, 
           status: product.status, 
-          description: product.description 
+          description: product.description,
+          order: product.order // Incluir el orden en la actualización
         })
         .eq('id', product.id)
         .select()

@@ -5,6 +5,7 @@ export interface Product {
   categoryId: string;
   status: "active" | "inactive";
   description?: string;
+  order: number; // Nuevo campo
 }
 
 export interface Category {
