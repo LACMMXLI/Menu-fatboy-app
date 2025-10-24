@@ -7,8 +7,9 @@ import { showSuccess, showError } from '@/utils/toast';
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, price, category_id, status, description, order')
-    .order('order', { ascending: true }); // Ordenar por el nuevo campo 'order'
+    .select('id, name, price, category_id, status, description, order, is_promotion'); // Incluir is_promotion
+    // No filtramos aquí, el filtrado se hace en el componente que usa el hook
+    // .order('order', { ascending: true });
 
   if (error) throw new Error(error.message);
   
@@ -19,7 +20,8 @@ const fetchProducts = async (): Promise<Product[]> => {
     categoryId: String(p.category_id),
     status: p.status as Product['status'],
     description: p.description || undefined,
-    order: Number(p.order || 999), // Asegurar que 'order' es un número
+    order: Number(p.order || 999),
+    isPromotion: p.is_promotion || false, // Mapear el nuevo campo
   })) as Product[];
 };
 
@@ -45,7 +47,8 @@ export const useAddProduct = () => {
           category_id: product.categoryId, 
           status: product.status, 
           description: product.description,
-          order: product.order // Incluir el orden en la inserción
+          order: product.order,
+          is_promotion: product.isPromotion // Incluir is_promotion en la inserción
         }])
         .select()
         .single();
@@ -76,7 +79,8 @@ export const useUpdateProduct = () => {
           category_id: product.categoryId, 
           status: product.status, 
           description: product.description,
-          order: product.order // Incluir el orden en la actualización
+          order: product.order,
+          is_promotion: product.isPromotion // Incluir is_promotion en la actualización
         })
         .eq('id', product.id)
         .select()

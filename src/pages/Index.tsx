@@ -16,16 +16,21 @@ export default function MenuPage() {
 
   const isLoading = isLoadingCategories || isLoadingProducts;
 
+  // Productos que NO son promoción
+  const regularProducts = useMemo(() => {
+    return products?.filter(p => !p.isPromotion) || [];
+  }, [products]);
+
   const activeCategories = useMemo(() => {
-    if (!categories || !products) return [];
+    if (!categories || !regularProducts) return [];
     
     const activeProductCategoryIds = new Set(
-      products.filter(p => p.status === 'active').map(p => p.categoryId)
+      regularProducts.filter(p => p.status === 'active').map(p => p.categoryId)
     );
     return categories
       .filter(c => c.status === 'active' && activeProductCategoryIds.has(c.id))
       .sort((a, b) => a.order - b.order);
-  }, [categories, products]);
+  }, [categories, regularProducts]);
 
   // Set initial active category
   useEffect(() => {
@@ -46,11 +51,11 @@ export default function MenuPage() {
   const currentCategory = activeCategories.find(c => c.id === activeCategoryId);
   
   const filteredProducts = useMemo(() => {
-    if (!products || !activeCategoryId) return [];
-    return products
+    if (!regularProducts || !activeCategoryId) return [];
+    return regularProducts
       .filter(p => p.categoryId === activeCategoryId && p.status === 'active')
       .sort((a, b) => a.order - b.order); // Aseguramos el orden por la nueva columna
-  }, [products, activeCategoryId]);
+  }, [regularProducts, activeCategoryId]);
 
 
   if (isLoading) {

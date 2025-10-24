@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Home, ShoppingCart } from 'lucide-react';
+import { Home, ShoppingCart, Gift } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useBranchStore } from '@/hooks/useBranchStore';
 import { useCartStore } from '@/hooks/useCartStore';
@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/', icon: Home, label: 'Menú' },
+  { href: '/promotions', icon: Gift, label: 'Promos' }, // Nuevo item
   { href: '/cart', icon: ShoppingCart, label: 'Carrito' },
 ];
 

@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/Cart";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import PromotionsPage from "./pages/Promotions"; // Importar la nueva página
 import { Layout } from "./components/Layout";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminCategories from "./pages/admin/AdminCategories";
@@ -24,6 +25,7 @@ const App = () => (
           {/* Client Routes */}
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
+            <Route path="/promotions" element={<PromotionsPage />} /> {/* Nueva ruta */}
             <Route path="/cart" element={<CartPage />} />
             <Route path="/confirmation" element={<OrderConfirmation />} />
           </Route>
