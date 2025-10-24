@@ -22,16 +22,22 @@ export function PromotionCarousel({ promotions }: PromotionCarouselProps) {
   }
 
   return (
-    <Carousel className="w-full max-w-xs mx-auto">
+    <Carousel className="w-full max-w-md mx-auto">
       <CarouselContent>
         {promotions.map((promo, index) => (
           <CarouselItem key={promo.id} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
-              <Card className="bg-card border-yellow-fatboy/50">
-                <CardContent className="flex flex-col aspect-square items-center justify-center p-6 text-center">
-                  <span className="text-sm font-bold text-red-fatboy mb-1">¡PROMOCIÓN!</span>
+              <Card className="bg-card border-yellow-fatboy/50 overflow-hidden">
+                {promo.imageUrl && (
+                  <img 
+                    src={promo.imageUrl} 
+                    alt={promo.name} 
+                    className="w-full h-auto object-cover"
+                  />
+                )}
+                <CardContent className="flex flex-col items-center justify-center p-4 text-center">
                   <h3 className="text-xl font-bold text-yellow-fatboy mb-2">{promo.name}</h3>
-                  <p className="text-xs text-white/80 mb-4 line-clamp-3">{promo.description || '¡Aprovecha esta oferta especial!'}</p>
+                  <p className="text-sm text-white/80 mb-4 line-clamp-3">{promo.description || '¡Aprovecha esta oferta especial!'}</p>
                   <p className="text-2xl font-extrabold text-red-fatboy mb-4">${promo.price.toFixed(2)}</p>
                   <Button 
                     onClick={() => addItem(promo)} 
@@ -46,8 +52,10 @@ export function PromotionCarousel({ promotions }: PromotionCarouselProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-2" />
-      <CarouselNext className="right-2" />
+      <div className="flex justify-center mt-4 space-x-4">
+        <CarouselPrevious />
+        <CarouselNext />
+      </div>
     </Carousel>
   );
 }

@@ -7,7 +7,7 @@ import { showSuccess, showError } from '@/utils/toast';
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from('products')
-    .select('id, name, price, category_id, status, description, order, is_promotion, short_description'); // Incluir short_description
+    .select('id, name, price, category_id, status, description, order, is_promotion, short_description, image_url'); // Incluir image_url
 
   if (error) throw new Error(error.message);
   
@@ -18,9 +18,10 @@ const fetchProducts = async (): Promise<Product[]> => {
     categoryId: String(p.category_id),
     status: p.status as Product['status'],
     description: p.description || undefined,
-    shortDescription: p.short_description || undefined, // Mapear el nuevo campo
+    shortDescription: p.short_description || undefined,
     order: Number(p.order || 999),
     isPromotion: p.is_promotion || false,
+    imageUrl: p.image_url || undefined, // Mapear el nuevo campo
   })) as Product[];
 };
 
@@ -46,9 +47,10 @@ export const useAddProduct = () => {
           category_id: product.categoryId, 
           status: product.status, 
           description: product.description,
-          short_description: product.shortDescription, // Incluir short_description
+          short_description: product.shortDescription,
           order: product.order,
-          is_promotion: product.isPromotion
+          is_promotion: product.isPromotion,
+          image_url: product.imageUrl // Incluir image_url
         }])
         .select()
         .single();
@@ -79,9 +81,10 @@ export const useUpdateProduct = () => {
           category_id: product.categoryId, 
           status: product.status, 
           description: product.description,
-          short_description: product.shortDescription, // Incluir short_description
+          short_description: product.shortDescription,
           order: product.order,
-          is_promotion: product.isPromotion
+          is_promotion: product.isPromotion,
+          image_url: product.imageUrl // Incluir image_url
         })
         .eq('id', product.id)
         .select()

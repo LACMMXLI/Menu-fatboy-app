@@ -5,9 +5,10 @@ export interface Product {
   categoryId: string;
   status: "active" | "inactive";
   description?: string;
-  shortDescription?: string; // Nuevo campo
+  shortDescription?: string;
   order: number;
   isPromotion: boolean;
+  imageUrl?: string; // Nuevo campo para la URL de la imagen
 }
 
 export interface Category {
