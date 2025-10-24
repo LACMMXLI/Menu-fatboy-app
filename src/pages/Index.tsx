@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useCartStore } from '@/hooks/useCartStore';
 import { useCategories } from '@/hooks/useCategories';
 import { useProducts } from '@/hooks/useProducts';
@@ -13,7 +13,6 @@ export default function MenuPage() {
   const { data: products, isLoading: isLoadingProducts } = useProducts();
   
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const isLoading = isLoadingCategories || isLoadingProducts;
 
@@ -40,46 +39,17 @@ export default function MenuPage() {
   };
 
   const handleSelectCategory = (id: string) => {
-    const element = sectionRefs.current[id];
-    if (element) {
-      // Scroll to the element, adjusting for the fixed header/navigation height (approx 100px)
-      const headerOffset = 100; 
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - headerOffset,
-        behavior: 'smooth',
-      });
-      setActiveCategoryId(id);
-    }
+    setActiveCategoryId(id);
+    // Al cambiar a vista filtrada, ya no necesitamos hacer scroll
   };
 
-  // Observer to update active category based on scroll position
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveCategoryId(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: '-50% 0px -50% 0px', // Trigger when section is roughly in the middle of the viewport
-        threshold: 0,
-      }
-    );
-
-    activeCategories.forEach((category) => {
-      const element = sectionRefs.current[category.id];
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [activeCategories]);
+  const currentCategory = activeCategories.find(c => c.id === activeCategoryId);
+  
+  const filteredProducts = useMemo(() => {
+    if (!products || !activeCategoryId) return [];
+    return products
+      .filter(p => p.categoryId === activeCategoryId && p.status === 'active');
+  }, [products, activeCategoryId]);
 
 
   if (isLoading) {
@@ -103,19 +73,16 @@ export default function MenuPage() {
         onSelectCategory={handleSelectCategory} 
       />
 
-      <div className="space-y-6 p-4 pt-0">
-        {activeCategories.map(category => (
-          <section 
-            key={category.id} 
-            id={category.id}
-            ref={el => sectionRefs.current[category.id] = el}
-            className="pt-4" // Add padding top for better visual separation after scrolling
-          >
-            <h2 className="mb-2 text-xl font-semibold text-yellow-fatboy">{category.name}</h2>
-            <div className="divide-y divide-gray-800">
-              {products
-                .filter(p => p.categoryId === category.id && p.status === 'active')
-                .map(product => (
+      <div className="space-y-6 p-4 pt-4">
+        {currentCategory && (
+          <section key={currentCategory.id} id={currentCategory.id}>
+            <h2 className="mb-4 text-2xl font-bold text-yellow-fatboy">{currentCategory.name}</h2>
+            
+            {filteredProducts.length === 0 ? (
+              <p className="text-muted-foreground text-center">No hay productos activos en esta categoría.</p>
+            ) : (
+              <div className="divide-y divide-gray-800">
+                {filteredProducts.map(product => (
                   <div key={product.id} className="flex items-center justify-between py-3">
                     <div className="flex-1 pr-4">
                       <h3 className="font-medium text-yellow-fatboy">{product.name}</h3>
@@ -131,9 +98,10 @@ export default function MenuPage() {
                     />
                   </div>
                 ))}
-            </div>
+              </div>
+            )}
           </section>
-        ))}
+        )}
       </div>
     </div>
   );
