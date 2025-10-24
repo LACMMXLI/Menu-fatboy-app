@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { useCartStore } from '@/hooks/useCartStore';
 import { useCategories } from '@/hooks/useCategories';
 import { useProducts } from '@/hooks/useProducts';
 import { QuantityControl } from '@/components/QuantityControl';
+import { CategoryNavigation } from '@/components/CategoryNavigation';
 import type { Product } from '@/lib/types';
 import { Loader2 } from 'lucide-react';
 
@@ -10,6 +11,9 @@ export default function MenuPage() {
   const { items, addItem, removeItem } = useCartStore();
   const { data: categories, isLoading: isLoadingCategories } = useCategories();
   const { data: products, isLoading: isLoadingProducts } = useProducts();
+  
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const isLoading = isLoadingCategories || isLoadingProducts;
 
@@ -24,17 +28,67 @@ export default function MenuPage() {
       .sort((a, b) => a.order - b.order);
   }, [categories, products]);
 
+  // Set initial active category
+  useEffect(() => {
+    if (activeCategories.length > 0 && activeCategoryId === null) {
+      setActiveCategoryId(activeCategories[0].id);
+    }
+  }, [activeCategories, activeCategoryId]);
+
   const getQuantity = (productId: string) => {
     return items.find(item => item.id === productId)?.quantity || 0;
   };
+
+  const handleSelectCategory = (id: string) => {
+    const element = sectionRefs.current[id];
+    if (element) {
+      // Scroll to the element, adjusting for the fixed header/navigation height (approx 100px)
+      const headerOffset = 100; 
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - headerOffset,
+        behavior: 'smooth',
+      });
+      setActiveCategoryId(id);
+    }
+  };
+
+  // Observer to update active category based on scroll position
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveCategoryId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-50% 0px -50% 0px', // Trigger when section is roughly in the middle of the viewport
+        threshold: 0,
+      }
+    );
+
+    activeCategories.forEach((category) => {
+      const element = sectionRefs.current[category.id];
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeCategories]);
+
 
   if (isLoading) {
     return <div className="mx-auto max-w-md p-4 text-center pt-20"><Loader2 className="h-8 w-8 animate-spin mx-auto" /> <p className="mt-2">Cargando menú...</p></div>;
   }
 
   return (
-    <div className="mx-auto max-w-md p-4">
-      <header className="mb-8 text-center">
+    <div className="mx-auto max-w-md">
+      <header className="mb-4 pt-4 text-center">
         <img 
           src="/logo.png" 
           alt="Menu Fatboy Logo" 
@@ -42,9 +96,21 @@ export default function MenuPage() {
         />
       </header>
 
-      <div className="space-y-6">
+      {/* Category Navigation */}
+      <CategoryNavigation 
+        categories={activeCategories} 
+        activeCategoryId={activeCategoryId} 
+        onSelectCategory={handleSelectCategory} 
+      />
+
+      <div className="space-y-6 p-4 pt-0">
         {activeCategories.map(category => (
-          <section key={category.id}>
+          <section 
+            key={category.id} 
+            id={category.id}
+            ref={el => sectionRefs.current[category.id] = el}
+            className="pt-4" // Add padding top for better visual separation after scrolling
+          >
             <h2 className="mb-2 text-xl font-semibold text-yellow-fatboy">{category.name}</h2>
             <div className="divide-y divide-gray-800">
               {products
