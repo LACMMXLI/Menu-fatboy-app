@@ -7,7 +7,7 @@ import { useCartStore } from '@/hooks/useCartStore';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/', icon: Home, label: 'Menú' },
+  { href: '/menu', icon: Home, label: 'Menú' },
   { href: '/promotions', icon: Gift, label: 'Promos' }, // Nuevo item
   { href: '/cart', icon: ShoppingCart, label: 'Carrito' },
 ];
