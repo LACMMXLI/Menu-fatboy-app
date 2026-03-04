@@ -31,4 +31,8 @@ export interface CartItem extends Product {
 export interface CustomerDetails {
   customerName: string;
   customerPhone: string;
+  deliveryMethod: 'pickup' | 'delivery';
+  paymentMethod: 'cash' | 'card';
+  address?: string;
+  reference?: string;
 }

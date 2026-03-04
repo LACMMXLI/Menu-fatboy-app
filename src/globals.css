@@ -91,6 +91,51 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* Micro-interacciones y Modernización */
+  .card, .button, button, a {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Efecto Hover para tarjetas de producto */
+  .product-card {
+    @apply transition-all duration-300;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    border-color: hsl(var(--primary) / 0.4);
+  }
+
+  /* Indicador de navegación activo */
+  .active-nav-item {
+    @apply relative text-primary font-bold transition-colors;
+  }
+
+  .active-nav-item::after {
+    content: '';
+    @apply absolute -bottom-1 left-1/2 -translate-x-1/2 w-6 h-1 bg-primary rounded-full;
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.6);
+  }
+
+  /* Botones con gradiente sutil */
+  .btn-modern {
+    @apply font-semibold tracking-wide transition-all active:scale-95;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, #ffcc00 100%);
+    box-shadow: 0 4px 14px 0 rgba(255, 215, 0, 0.2);
+  }
+
+  .btn-modern:hover {
+    @apply brightness-110 shadow-lg scale-[1.02];
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+  }
+
+  /* Glassmorphism para elementos flotantes */
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border-white/10;
   }
 }

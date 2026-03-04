@@ -87,24 +87,26 @@ export default function MenuPage() {
             {filteredProducts.length === 0 ? (
               <p className="text-muted-foreground text-center">No hay productos activos en esta categoría.</p>
             ) : (
-              <div className="divide-y divide-gray-800">
+              <div className="grid grid-cols-1 gap-4">
                 {filteredProducts.map(product => (
-                  <div key={product.id} className="flex items-center justify-between py-3">
+                  <div key={product.id} className="product-card flex items-center justify-between p-4 bg-card rounded-xl border border-white/5 shadow-lg group">
                     <div className="flex-1 pr-4">
-                      <h3 className="font-medium text-yellow-fatboy">{product.name}</h3>
+                      <h3 className="font-bold text-lg text-primary tracking-tight">{product.name}</h3>
                       {product.shortDescription && (
-                        <p className="text-xs font-semibold text-red-fatboy/80 mb-1">{product.shortDescription}</p>
+                        <p className="text-xs font-bold text-destructive/90 uppercase tracking-widest mb-1">{product.shortDescription}</p>
                       )}
                       {product.description && (
-                        <p className="text-sm text-white/80">{product.description}</p>
+                        <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">{product.description}</p>
                       )}
-                      <p className="text-sm font-semibold text-red-fatboy">${product.price.toFixed(2)}</p>
+                      <p className="mt-2 text-lg font-black text-white">${product.price.toFixed(2)}</p>
                     </div>
-                    <QuantityControl
-                      quantity={getQuantity(product.id)}
-                      onAdd={() => addItem(product as Product)}
-                      onRemove={() => removeItem(product.id)}
-                    />
+                    <div className="bg-black/20 p-2 rounded-lg backdrop-blur-sm">
+                      <QuantityControl
+                        quantity={getQuantity(product.id)}
+                        onAdd={() => addItem(product as Product)}
+                        onRemove={() => removeItem(product.id)}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>

@@ -13,6 +13,7 @@ import { Layout } from "./components/Layout";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminProducts from "./pages/admin/AdminProducts";
+import AdminPromotions from "./pages/admin/AdminPromotions";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route index element={<AdminCategories />} />
             <Route path="categories" element={<AdminCategories />} />
             <Route path="products" element={<AdminProducts />} />
+            <Route path="promotions" element={<AdminPromotions />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

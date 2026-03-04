@@ -6,10 +6,14 @@ interface CartState {
   items: CartItem[];
   customerName: string;
   customerPhone: string;
+  deliveryMethod: 'pickup' | 'delivery';
+  paymentMethod: 'cash' | 'card';
+  address: string;
+  reference: string;
   addItem: (product: Product) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
-  setCustomerDetails: (details: CustomerDetails) => void;
+  setCustomerDetails: (details: Partial<CustomerDetails>) => void;
   totalItems: () => number;
   subtotal: () => number;
 }
@@ -20,6 +24,10 @@ export const useCartStore = create<CartState>()(
       items: [],
       customerName: '',
       customerPhone: '',
+      deliveryMethod: 'pickup',
+      paymentMethod: 'cash',
+      address: '',
+      reference: '',
       addItem: (product) => {
         const { items } = get();
         const existingItem = items.find((item) => item.id === product.id);
@@ -44,8 +52,8 @@ export const useCartStore = create<CartState>()(
           set({ items: items.filter((item) => item.id !== productId) });
         }
       },
-      clearCart: () => set({ items: [], customerName: '', customerPhone: '' }),
-      setCustomerDetails: (details) => set({ customerName: details.customerName, customerPhone: details.customerPhone }),
+      clearCart: () => set({ items: [], customerName: '', customerPhone: '', deliveryMethod: 'pickup', paymentMethod: 'cash', address: '', reference: '' }),
+      setCustomerDetails: (details) => set((state) => ({ ...state, ...details })),
       totalItems: () => get().items.reduce((total, item) => total + item.quantity, 0),
       subtotal: () => get().items.reduce((total, item) => total + item.price * item.quantity, 0),
     }),
