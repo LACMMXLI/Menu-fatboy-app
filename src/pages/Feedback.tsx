@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,16 @@ export default function FeedbackPage() {
   const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
 
   const normalizedBranch = branch?.toLowerCase();
+
+  useEffect(() => {
+    if (status === "success" && redirectUrl) {
+      // Pequeño retraso para que el usuario vea el mensaje de éxito antes de ser redirigido
+      const timer = setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [status, redirectUrl]);
 
   if (!normalizedBranch || (normalizedBranch !== "venecia" && normalizedBranch !== "sanmarcos")) {
     return (
