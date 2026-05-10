@@ -31,7 +31,7 @@ export default function FeedbackPage() {
       // Pequeño retraso para que el usuario vea el mensaje de éxito antes de ser redirigido
       const timer = setTimeout(() => {
         window.location.href = redirectUrl;
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [status, redirectUrl]);
