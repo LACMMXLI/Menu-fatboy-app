@@ -8,7 +8,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/Cart";
 import OrderConfirmation from "./pages/OrderConfirmation";
-import PromotionsPage from "./pages/Promotions"; // Importar la nueva página
+import PromotionsPage from "./pages/Promotions";
+import FeedbackSelectPage from "./pages/FeedbackSelect";
+import FeedbackPage from "./pages/Feedback";
 import { Layout } from "./components/Layout";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminCategories from "./pages/admin/AdminCategories";
@@ -26,6 +28,10 @@ const App = () => (
         <Routes>
           {/* Landing Page Route */}
           <Route path="/" element={<LandingPage />} />
+
+          {/* Feedback Routes */}
+          <Route path="/feedback" element={<FeedbackSelectPage />} />
+          <Route path="/feedback/:branch" element={<FeedbackPage />} />
 
           {/* Client Routes */}
           <Route element={<Layout />}>
