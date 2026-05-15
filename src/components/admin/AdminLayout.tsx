@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Home, List, ShoppingBasket, Menu, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, List, ShoppingBasket, Menu, Star, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ const navItems = [
   { href: '/admin/categories', label: 'Categorías', icon: List },
   { href: '/admin/products', label: 'Productos', icon: ShoppingBasket },
   { href: '/admin/promotions', label: 'Promociones', icon: Star },
+  { href: '/admin/reviews', label: 'Reseñas', icon: MessageSquare },
 ];
 
 interface NavItemProps {

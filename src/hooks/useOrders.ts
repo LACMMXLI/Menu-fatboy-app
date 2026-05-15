@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import type { Order, OrderItem } from '@/lib/types';
 import { toast } from 'sonner';
@@ -129,4 +129,25 @@ export const useCreateOrder = () => {
     queryClient.invalidateQueries({ queryKey: ['orders', order.branch_id] });
     return orderData;
   };
+};
+
+export const useClearOrderHistory = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (branchId: string) => {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .eq('branch_id', branchId)
+        .in('status', ['finalizado', 'cancelado']);
+
+      if (error) {
+        throw error;
+      }
+    },
+    onSuccess: (_, branchId) => {
+      queryClient.invalidateQueries({ queryKey: ['orders', branchId] });
+    },
+  });
 };

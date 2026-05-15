@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useOrders, useUpdateOrderStatus } from '@/hooks/useOrders';
+import { useOrders, useUpdateOrderStatus, useClearOrderHistory } from '@/hooks/useOrders';
 import { useBranches } from '@/hooks/useBranches';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Printer, CheckCircle, XCircle, Clock, Smartphone } from 'lucide-react';
+import { Loader2, Printer, CheckCircle, XCircle, Clock, Smartphone, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 const statusColors = {
   nuevo: 'bg-blue-500 hover:bg-blue-600',
@@ -23,17 +24,41 @@ export default function OrderManagement() {
   
   const { data: orders, isLoading } = useOrders(currentBranch?.id);
   const updateStatus = useUpdateOrderStatus();
+  const clearHistory = useClearOrderHistory();
   const [activeTab, setActiveTab] = useState<'active' | 'finished'>('active');
+  const [isClearing, setIsClearing] = useState(false);
 
   const activeOrders = orders?.filter(o => o.status === 'nuevo' || o.status === 'impreso') || [];
   const finishedOrders = orders?.filter(o => o.status === 'finalizado' || o.status === 'cancelado') || [];
+
+  const handleClearHistory = async () => {
+    if (!currentBranch) return;
+    if (!window.confirm("¿Estás seguro de limpiar todo el historial de esta sucursal? (Pedidos finalizados y cancelados)")) return;
+
+    setIsClearing(true);
+    try {
+      await clearHistory.mutateAsync(currentBranch.id);
+      toast.success("Historial limpiado correctamente");
+    } catch (error) {
+      toast.error("Error al limpiar historial");
+    } finally {
+      setIsClearing(false);
+    }
+  };
 
   const handlePrint = (order: any) => {
     const printWindow = window.open('', '_blank');
     if (!printWindow) return;
 
-    const itemsHtml = order.items?.map((item: any) => `
-      <div style="display: flex; justify-between: space-between; border-bottom: 1px dashed #ccc; padding: 5px 0;">
+    const productionItemsHtml = order.items?.map((item: any) => `
+      <div style="border-bottom: 1px dashed #000; padding: 4px 0; font-size: 18px;">
+        <span style="font-weight: bold;">${item.quantity}x ${item.name}</span>
+        ${item.notes ? `<div style="font-size: 14px; font-style: italic; margin-left: 10px;">* ${item.notes}</div>` : ''}
+      </div>
+    `).join('');
+
+    const customerItemsHtml = order.items?.map((item: any) => `
+      <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 5px 0;">
         <span>${item.quantity}x ${item.name}</span>
         <span>$${(item.price * item.quantity).toFixed(2)}</span>
       </div>
@@ -44,33 +69,63 @@ export default function OrderManagement() {
         <head>
           <title>Pedido #${order.id.slice(0, 8)}</title>
           <style>
-            body { font-family: 'Courier New', Courier, monospace; width: 80mm; margin: 0; padding: 10px; font-size: 14px; }
+            body { font-family: 'Courier New', Courier, monospace; width: 80mm; margin: 0; padding: 0; color: black; }
+            .ticket { padding: 10px; page-break-after: always; }
             .header { text-align: center; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 10px; }
             .section { margin-bottom: 10px; }
             .total { font-weight: bold; font-size: 18px; text-align: right; border-top: 2px solid black; padding-top: 10px; }
-            @media print { body { width: 100%; } }
+            .kitchen-label { text-align: center; font-size: 24px; font-weight: bold; border: 2px solid black; margin-bottom: 10px; }
+            @media print { body { width: 80mm; } }
           </style>
         </head>
         <body>
-          <div class="header">
-            <h2 style="margin: 0;">FATBOY BURGERS</h2>
-            <p style="margin: 5px 0;">Sucursal ${currentBranch?.name}</p>
-            <p style="margin: 5px 0;">${format(new Date(order.created_at), 'Pp', { locale: es })}</p>
+          <!-- TICKET DE PRODUCCIÓN (COCINA) -->
+          <div class="ticket">
+            <div class="kitchen-label">COCINA</div>
+            <div class="header">
+              <h2 style="margin: 0;">ORDEN #${order.id.slice(0, 8)}</h2>
+              <p style="margin: 5px 0;">${currentBranch?.name}</p>
+              <p style="margin: 5px 0;">${format(new Date(order.created_at), 'Pp', { locale: es })}</p>
+            </div>
+            <div class="section">
+              <strong>CLIENTE:</strong> ${order.customer_name}<br>
+            </div>
+            <div class="section">
+              <strong>DETALLE:</strong><br>
+              ${productionItemsHtml}
+            </div>
+            ${order.notes ? `<div class="section" style="border: 1px solid black; padding: 5px;"><strong>NOTAS GENERALES:</strong><br>${order.notes}</div>` : ''}
           </div>
-          <div class="section">
-            <strong>CLIENTE:</strong> ${order.customer_name}<br>
-            <strong>TEL:</strong> ${order.customer_phone || 'N/A'}<br>
-            <strong>PAGO:</strong> ${order.payment_method.toUpperCase()}
+
+          <!-- TICKET DE CLIENTE -->
+          <div class="ticket" style="page-break-after: auto;">
+            <div class="header">
+              <h2 style="margin: 0;">FATBOY BURGERS</h2>
+              <p style="margin: 5px 0;">Sucursal ${currentBranch?.name}</p>
+              <p style="margin: 5px 0;">${format(new Date(order.created_at), 'Pp', { locale: es })}</p>
+              <p style="margin: 5px 0; font-size: 12px;">Pedido #${order.id.slice(0, 8)}</p>
+            </div>
+            <div class="section">
+              <strong>CLIENTE:</strong> ${order.customer_name}<br>
+              ${order.customer_phone ? `<strong>TEL:</strong> ${order.customer_phone}<br>` : ''}
+              <strong>PAGO:</strong> ${order.payment_method.toUpperCase()}
+            </div>
+            <div class="section">
+              <strong>RESUMEN:</strong><br>
+              ${customerItemsHtml}
+            </div>
+            <div class="total">
+              TOTAL: $${order.total.toFixed(2)}
+            </div>
+            <p style="text-align: center; margin-top: 20px;">¡Gracias por tu preferencia!</p>
           </div>
-          <div class="section">
-            <strong>PEDIDO:</strong><br>
-            ${itemsHtml}
-          </div>
-          <div class="total">
-            TOTAL: $${order.total.toFixed(2)}
-          </div>
-          <p style="text-align: center; margin-top: 20px;">¡Gracias por tu compra!</p>
-          <script>window.print(); window.close();</script>
+
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+            }
+          </script>
         </body>
       </html>
     `);
@@ -97,7 +152,7 @@ export default function OrderManagement() {
           </p>
         </div>
         
-        <div className="flex bg-zinc-900 rounded-xl p-1 border border-white/5">
+        <div className="flex bg-zinc-900 rounded-xl p-1 border border-white/5 items-center gap-1">
           <Button 
             variant={activeTab === 'active' ? 'default' : 'ghost'}
             className={`rounded-lg px-6 ${activeTab === 'active' ? 'bg-primary text-black' : 'text-white'}`}
@@ -111,6 +166,19 @@ export default function OrderManagement() {
             onClick={() => setActiveTab('finished')}
           >
             Historial
+          </Button>
+          
+          <div className="h-6 w-[1px] bg-white/10 mx-1" />
+
+          <Button 
+            variant="ghost"
+            size="icon"
+            className="text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg h-9 w-9"
+            onClick={handleClearHistory}
+            disabled={isClearing || finishedOrders.length === 0}
+            title="Limpiar Historial"
+          >
+            <Trash2 className="h-4 w-4" />
           </Button>
         </div>
       </header>

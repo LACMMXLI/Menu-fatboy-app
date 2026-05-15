@@ -16,6 +16,7 @@ import AdminLayout from "./components/admin/AdminLayout";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminPromotions from "./pages/admin/AdminPromotions";
+import AdminReviews from "./pages/admin/AdminReviews";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="categories" element={<AdminCategories />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path="promotions" element={<AdminPromotions />} />
+            <Route path="reviews" element={<AdminReviews />} />
             <Route path="pedidos/:branchName" element={<OrderManagement />} />
           </Route>
 
