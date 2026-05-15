@@ -31,8 +31,33 @@ export interface CartItem extends Product {
 export interface CustomerDetails {
   customerName: string;
   customerPhone: string;
-  deliveryMethod: 'pickup' | 'delivery';
+  deliveryMethod: 'pickup';
   paymentMethod: 'cash' | 'card';
-  address?: string;
-  reference?: string;
+}
+
+export interface Order {
+  id: string;
+  branch_id: string;
+  customer_name: string;
+  customer_phone?: string;
+  payment_method: 'cash' | 'card';
+  delivery_method: 'pickup';
+  total: number;
+  status: 'nuevo' | 'impreso' | 'finalizado' | 'cancelado';
+  notes?: string;
+  created_at: string;
+  printed_at?: string;
+  completed_at?: string;
+  cancelled_at?: string;
+  items?: OrderItem[];
+}
+
+export interface OrderItem {
+  id: string;
+  order_id: string;
+  product_id: string;
+  name: string;
+  quantity: number;
+  price: number;
+  notes?: string;
 }

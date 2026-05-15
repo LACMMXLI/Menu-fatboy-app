@@ -17,6 +17,10 @@ import AdminCategories from "./pages/admin/AdminCategories";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminPromotions from "./pages/admin/AdminPromotions";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLogin from "./pages/admin/AdminLogin";
+import OrderManagement from "./pages/admin/OrderManagement";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -42,11 +46,14 @@ const App = () => (
           </Route>
 
           {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin/login" element={<AdminLogin />} />
+          
+          <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
             <Route index element={<AdminCategories />} />
             <Route path="categories" element={<AdminCategories />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path="promotions" element={<AdminPromotions />} />
+            <Route path="pedidos/:branchName" element={<OrderManagement />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

@@ -6,10 +6,8 @@ interface CartState {
   items: CartItem[];
   customerName: string;
   customerPhone: string;
-  deliveryMethod: 'pickup' | 'delivery';
+  deliveryMethod: 'pickup';
   paymentMethod: 'cash' | 'card';
-  address: string;
-  reference: string;
   addItem: (product: Product) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
@@ -26,8 +24,6 @@ export const useCartStore = create<CartState>()(
       customerPhone: '',
       deliveryMethod: 'pickup',
       paymentMethod: 'cash',
-      address: '',
-      reference: '',
       addItem: (product) => {
         const { items } = get();
         const existingItem = items.find((item) => item.id === product.id);
@@ -52,7 +48,7 @@ export const useCartStore = create<CartState>()(
           set({ items: items.filter((item) => item.id !== productId) });
         }
       },
-      clearCart: () => set({ items: [], customerName: '', customerPhone: '', deliveryMethod: 'pickup', paymentMethod: 'cash', address: '', reference: '' }),
+      clearCart: () => set({ items: [], customerName: '', customerPhone: '', deliveryMethod: 'pickup', paymentMethod: 'cash' }),
       setCustomerDetails: (details) => set((state) => ({ ...state, ...details })),
       totalItems: () => get().items.reduce((total, item) => total + item.quantity, 0),
       subtotal: () => get().items.reduce((total, item) => total + item.price * item.quantity, 0),

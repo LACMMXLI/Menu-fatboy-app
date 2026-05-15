@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
+import type { CustomerDetails } from '@/lib/types';
 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -23,34 +24,22 @@ const customerDetailsSchema = z.object({
   customerName: z.string().min(2, 'El nombre es obligatorio.'),
   customerPhone: z.string().regex(/^\d{10,15}$/, 'El teléfono debe tener entre 10 y 15 dígitos.'),
   branchId: z.string().min(1, 'Debes seleccionar una sucursal.'),
-  deliveryMethod: z.enum(['pickup', 'delivery']),
+  deliveryMethod: z.literal('pickup'),
   paymentMethod: z.enum(['cash', 'card']),
-  address: z.string().optional(),
-  reference: z.string().optional(),
-}).refine((data) => {
-  if (data.deliveryMethod === 'delivery' && (!data.address || data.address.length < 5)) {
-    return false;
-  }
-  return true;
-}, {
-  message: "La dirección es obligatoria para pedidos a domicilio.",
-  path: ["address"],
 });
+
+import { useOrders, useCreateOrder } from '@/hooks/useOrders';
 
 type CustomerDetailsForm = z.infer<typeof customerDetailsSchema>;
 
-const DELIVERY_FEE = 50;
-
 export default function CartPage() {
   const navigate = useNavigate();
+  const createOrder = useCreateOrder();
   const { 
     items, 
     customerName, 
     customerPhone, 
-    deliveryMethod,
     paymentMethod,
-    address,
-    reference,
     addItem, 
     removeItem, 
     subtotal, 
@@ -66,18 +55,15 @@ export default function CartPage() {
       customerName: customerName,
       customerPhone: customerPhone,
       branchId: selectedBranch?.id || '',
-      deliveryMethod: deliveryMethod || 'pickup',
+      deliveryMethod: 'pickup',
       paymentMethod: paymentMethod || 'cash',
-      address: address || '',
-      reference: reference || '',
     },
     mode: 'onBlur',
   });
 
   const currentBranch = branches?.find(b => b.id === form.watch('branchId')) || null;
-  const watchDeliveryMethod = form.watch('deliveryMethod');
 
-  const onSubmit = (values: CustomerDetailsForm) => {
+  const onSubmit = async (values: CustomerDetailsForm) => {
     const branch = branches?.find(b => b.id === values.branchId);
     
     if (!branch) {
@@ -89,30 +75,51 @@ export default function CartPage() {
       return;
     }
 
-    // 1. Guardar detalles y sucursal seleccionada en el store
-    const details = { 
-      customerName: values.customerName, 
-      customerPhone: values.customerPhone,
-      deliveryMethod: values.deliveryMethod,
-      paymentMethod: values.paymentMethod,
-      address: values.address,
-      reference: values.reference
-    };
-    setCustomerDetails(details);
-    selectBranch(branch);
+    try {
+      // 1. Guardar en la base de datos
+      const orderData = {
+        branch_id: branch.id,
+        customer_name: values.customerName,
+        customer_phone: values.customerPhone,
+        payment_method: values.paymentMethod,
+        delivery_method: 'pickup' as const,
+        total: subtotal(),
+      };
 
-    // 2. Abrir WhatsApp
-    const url = buildWhatsAppLink(
-      branch,
-      items,
-      details as any,
-      subtotal()
-    );
-    window.open(url, '_blank');
+      const orderItems = items.map(item => ({
+        product_id: item.id,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      }));
 
-    // 3. Limpiar carrito y redirigir
-    clearCart();
-    navigate('/confirmation');
+      await createOrder(orderData, orderItems);
+
+      // 2. Guardar detalles y sucursal seleccionada en el store
+      const details: CustomerDetails = { 
+        customerName: values.customerName, 
+        customerPhone: values.customerPhone,
+        deliveryMethod: 'pickup',
+        paymentMethod: values.paymentMethod,
+      };
+      setCustomerDetails(details);
+      selectBranch(branch);
+
+      // 3. Abrir WhatsApp (opcional, pero se mantiene según el flujo actual)
+      const url = buildWhatsAppLink(
+        branch,
+        items,
+        details as any,
+        subtotal()
+      );
+      window.open(url, '_blank');
+
+      // 4. Limpiar carrito y redirigir
+      clearCart();
+      navigate('/confirmation');
+    } catch (error: any) {
+      showError(`Error al procesar el pedido: ${error.message}`);
+    }
   };
 
   // Sincronizar el store con el formulario si el usuario navega
@@ -120,11 +127,9 @@ export default function CartPage() {
     setCustomerDetails({
       customerName: data.customerName || '',
       customerPhone: data.customerPhone || '',
-      deliveryMethod: (data.deliveryMethod as 'pickup' | 'delivery') || 'pickup',
+      deliveryMethod: 'pickup',
       paymentMethod: (data.paymentMethod as 'cash' | 'card') || 'cash',
-      address: data.address || '',
-      reference: data.reference || '',
-    });
+    } as CustomerDetails);
 
     if (data.branchId && data.branchId !== selectedBranch?.id && branches) {
       const branch = branches.find(b => b.id === data.branchId);
@@ -162,14 +167,12 @@ export default function CartPage() {
             <Card className="mb-6 overflow-hidden border-none bg-gradient-to-r from-primary/20 to-transparent backdrop-blur-sm">
               <CardContent className="p-4 flex items-center gap-3">
                 <div className="bg-primary p-2 rounded-lg text-black">
-                  {watchDeliveryMethod === 'delivery' ? '🛵' : '🏠'}
+                  🏠
                 </div>
                 <div>
                   <p className="text-xs uppercase font-black text-primary/80 tracking-widest">Método de entrega</p>
                   <p className="text-sm font-bold text-white leading-tight">
-                    {watchDeliveryMethod === 'delivery' 
-                      ? "Envío a domicilio (+$50.00)" 
-                      : `Recogerás en ${currentBranch.name}`}
+                    Recogerás en {currentBranch.name}
                   </p>
                 </div>
               </CardContent>
@@ -235,43 +238,6 @@ export default function CartPage() {
 
                 <FormField
                   control={form.control}
-                  name="deliveryMethod"
-                  render={({ field }) => (
-                    <FormItem className="space-y-3">
-                      <FormLabel className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Tipo de pedido</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex gap-2"
-                        >
-                          <div className="flex-1">
-                            <RadioGroupItem value="pickup" id="pickup" className="sr-only" />
-                            <Label 
-                              htmlFor="pickup" 
-                              className={`flex h-12 flex-col items-center justify-center rounded-xl border-2 transition-all cursor-pointer ${field.value === 'pickup' ? 'border-primary bg-primary/10 text-white shadow-[0_0_15px_rgba(255,191,0,0.25)]' : 'border-white/5 bg-black/20 text-muted-foreground hover:bg-white/5'}`}
-                            >
-                              <span className="text-sm font-bold">Para recoger</span>
-                            </Label>
-                          </div>
-                          <div className="flex-1">
-                            <RadioGroupItem value="delivery" id="delivery" className="sr-only" />
-                            <Label 
-                              htmlFor="delivery" 
-                              className={`flex h-12 flex-col items-center justify-center rounded-xl border-2 transition-all cursor-pointer ${field.value === 'delivery' ? 'border-primary bg-primary/10 text-white shadow-[0_0_15px_rgba(255,191,0,0.25)]' : 'border-white/5 bg-black/20 text-muted-foreground hover:bg-white/5'}`}
-                            >
-                              <span className="text-sm font-bold">A domicilio</span>
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
                   name="paymentMethod"
                   render={({ field }) => (
                     <FormItem className="space-y-3">
@@ -314,45 +280,6 @@ export default function CartPage() {
                   Tus Datos
                 </h2>
                 
-                {watchDeliveryMethod === 'delivery' && (
-                  <>
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Dirección Completa</FormLabel>
-                          <FormControl>
-                            <Textarea 
-                              className="bg-black/40 border-white/10 rounded-xl focus:ring-primary/50 min-h-[80px]"
-                              placeholder="Calle, número, colonia..." 
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="reference"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs uppercase font-bold text-muted-foreground tracking-widest">Referencias</FormLabel>
-                          <FormControl>
-                            <Input 
-                              className="h-12 bg-black/40 border-white/10 rounded-xl focus:ring-primary/50"
-                              placeholder="Casa color azul, frente al parque..." 
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </>
-                )}
-
                 <FormField
                   control={form.control}
                   name="customerName"
@@ -396,16 +323,10 @@ export default function CartPage() {
                   <span>Subtotal:</span>
                   <span>${subtotal().toFixed(2)}</span>
                 </div>
-                {watchDeliveryMethod === 'delivery' && (
-                  <div className="flex justify-between text-sm text-primary px-1 font-bold italic">
-                    <span>Cuota de envío:</span>
-                    <span>$50.00</span>
-                  </div>
-                )}
                 <div className="flex justify-between items-end pt-2 px-1">
                   <span className="text-xl font-black text-white italic uppercase tracking-tighter">Total Final:</span>
                   <span className="text-3xl font-black text-primary tracking-tight">
-                    ${(subtotal() + (watchDeliveryMethod === 'delivery' ? DELIVERY_FEE : 0)).toFixed(2)}
+                    ${subtotal().toFixed(2)}
                   </span>
                 </div>
               </div>

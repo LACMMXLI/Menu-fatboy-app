@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
 const navItems = [
+  { href: '/admin/pedidos/venecia', label: 'Pedidos Venecia', icon: ShoppingBasket },
+  { href: '/admin/pedidos/san-marcos', label: 'Pedidos San Marcos', icon: ShoppingBasket },
   { href: '/admin/categories', label: 'Categorías', icon: List },
   { href: '/admin/products', label: 'Productos', icon: ShoppingBasket },
   { href: '/admin/promotions', label: 'Promociones', icon: Star },
