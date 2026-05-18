@@ -74,19 +74,19 @@ export default function LandingPage() {
       <div className="absolute -left-28 top-12 h-64 w-64 rounded-full bg-[#FFC107]/20 blur-3xl" />
       <div className="absolute -right-24 bottom-20 h-56 w-56 rounded-full bg-[#25D366]/10 blur-3xl" />
 
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-5">
-        <header className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#FFC107] shadow-2xl shadow-black/30 backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" />
-            Bienvenido
-          </div>
-          <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#FFC107]/30 bg-[#FFC107]/10 text-[#FFC107] shadow-lg shadow-[#FFC107]/10">
-            <Utensils className="h-5 w-5" />
-          </div>
-        </header>
+      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pt-6 pb-4">
+        <div className="flex flex-1 flex-col justify-center py-2">
+          <header className="flex items-center justify-between mb-7">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#FFC107] shadow-2xl shadow-black/30 backdrop-blur">
+              <Sparkles className="h-3.5 w-3.5" />
+              Bienvenido
+            </div>
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#FFC107]/30 bg-[#FFC107]/10 text-[#FFC107] shadow-lg shadow-[#FFC107]/10">
+              <Utensils className="h-5 w-5" />
+            </div>
+          </header>
 
-        <div className="flex flex-1 flex-col justify-center py-4">
-          <div className="relative mx-auto mb-3 flex h-[clamp(170px,25vh,224px)] w-full max-w-[280px] items-center justify-center">
+          <div className="relative mx-auto mb-4 flex h-[clamp(160px,22vh,200px)] w-full max-w-[260px] items-center justify-center">
             <div className="absolute inset-4 rounded-full bg-[#FFC107]/[0.12] blur-3xl" />
             <img
               src="/logo.png"
@@ -96,13 +96,13 @@ export default function LandingPage() {
           </div>
 
 
-          <div className="mb-4 text-center">
-            <h1 className="mt-2 text-[19px] font-black uppercase tracking-wide text-[#FFC107] whitespace-nowrap">
+          <div className="mb-6 text-center">
+            <h1 className="mt-1 text-[19px] font-black uppercase tracking-wide text-[#FFC107] whitespace-nowrap">
               Venimos mejores y renovados.
             </h1>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-5">
             <div className="grid grid-cols-2 gap-3">
               <Button
                 asChild
@@ -145,7 +145,7 @@ export default function LandingPage() {
           <Button
             asChild
             variant="outline"
-            className="mt-6 h-[58px] w-full rounded-2xl border-[#FFC107]/25 bg-white text-sm font-black text-black shadow-[0_18px_42px_rgba(255,255,255,0.14)] hover:bg-zinc-100 hover:text-black active:scale-[0.98]"
+            className="mt-8 h-[58px] w-full rounded-2xl border-[#FFC107]/25 bg-white text-sm font-black text-black shadow-[0_18px_42px_rgba(255,255,255,0.14)] hover:bg-zinc-100 hover:text-black active:scale-[0.98]"
           >
             <Link to="/feedback" className="flex w-full h-full items-center justify-center gap-2.5 px-4">
               <GoogleIcon />
