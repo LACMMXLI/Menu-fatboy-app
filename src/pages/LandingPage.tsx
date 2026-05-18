@@ -86,7 +86,7 @@ export default function LandingPage() {
             </div>
           </header>
 
-          <div className="relative mx-auto mb-6 flex flex-col items-center justify-center w-full max-w-[390px]">
+          <div className="relative mx-auto mb-16 flex flex-col items-center justify-center w-full max-w-[390px]">
             <div className="relative flex h-[clamp(234px,34vh,300px)] w-full items-center justify-center">
               <div className="absolute inset-4 rounded-full bg-[#FFC107]/[0.12] blur-3xl" />
               <img
