@@ -14,32 +14,34 @@ const navItems = [
 
 export function Layout() {
   const { totalItems } = useCartStore();
+  const location = useLocation();
+  const isPromotionsPage = location.pathname === '/promotions';
   
   // Eliminamos la lógica de redirección forzada aquí.
   // La selección de sucursal ahora es obligatoria en el formulario del carrito.
 
   return (
     <div className="flex h-screen w-full flex-col bg-background">
-      <main className="flex-1 overflow-y-auto pb-20">
+      <main className={cn("flex-1", isPromotionsPage ? "overflow-hidden" : "overflow-y-auto pb-14")}>
         <Outlet />
       </main>
-      <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-card">
-        <nav className="mx-auto flex h-16 max-w-md items-center justify-around">
+      <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-card shadow-2xl z-40">
+        <nav className="mx-auto flex h-12 max-w-md items-center justify-around px-2">
           {navItems.map((item) => (
             <NavLink
               key={item.href}
               to={item.href}
               className={({ isActive }) =>
                 cn(
-                  'flex flex-col items-center gap-1 px-4 text-sm font-medium text-muted-foreground hover:text-primary',
+                  'flex flex-col items-center gap-0.5 px-3 text-[10px] font-black uppercase tracking-wider text-muted-foreground hover:text-primary transition-all duration-150',
                   isActive && 'text-primary'
                 )
               }
             >
               <div className="relative">
-                <item.icon className="h-6 w-6" />
+                <item.icon className="h-5 w-5" />
                 {item.href === '/cart' && totalItems() > 0 && (
-                  <span className="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-fatboy text-xs text-white">
+                  <span className="absolute -right-1.5 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-fatboy text-[9px] font-bold text-white shadow-md">
                     {totalItems()}
                   </span>
                 )}

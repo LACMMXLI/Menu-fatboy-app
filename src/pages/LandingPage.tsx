@@ -95,25 +95,10 @@ export default function LandingPage() {
             />
           </div>
 
-          <Button
-            asChild
-            variant="outline"
-            className="mb-4 h-[58px] w-full rounded-2xl border-[#FFC107]/25 bg-white text-sm font-black text-black shadow-[0_18px_42px_rgba(255,255,255,0.14)] hover:bg-zinc-100 hover:text-black active:scale-[0.98]"
-          >
-            <Link to="/feedback">
-              <GoogleIcon />
-              CALIFÍCANOS EN GOOGLE
-              <Star className="ml-auto h-4 w-4 fill-[#FFC107] text-[#FFC107]" />
-            </Link>
-          </Button>
 
           <div className="mb-4 text-center">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-white/45">
-              Fatboy Burgers
-            </p>
-            <h1 className="mt-2 text-[28px] font-black leading-none tracking-tight text-white">
-              Ordena rápido.
-              <span className="block text-[#FFC107]">Come mejor.</span>
+            <h1 className="mt-2 text-[19px] font-black uppercase tracking-wide text-[#FFC107] whitespace-nowrap">
+              Venimos mejores y renovados.
             </h1>
           </div>
 
@@ -141,31 +126,33 @@ export default function LandingPage() {
               </Button>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-2.5 shadow-xl shadow-black/25 backdrop-blur-md">
-              <div className="mb-2 flex items-center justify-between px-1">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFC107]">
-                  Pide por WhatsApp
-                </p>
-                <p className="text-[10px] font-semibold text-white/42">
-                  Elige sucursal
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                {branchLinks.map((branch) => (
-                  <button
-                    key={branch.href}
-                    type="button"
-                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-[#25D366]/20 bg-[#25D366] px-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-[0_10px_20px_rgba(37,211,102,0.16)] transition hover:bg-[#20c35d] active:scale-[0.98]"
-                    onClick={() => window.open(branch.href, "_blank")}
-                  >
-                    <WhatsAppIcon />
-                    <span>{branch.name}</span>
-                  </button>
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-2">
+              {branchLinks.map((branch) => (
+                <button
+                  key={branch.href}
+                  type="button"
+                  className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#00E676] text-black font-black uppercase tracking-wide px-2 text-center text-xs shadow-[0_10px_22px_rgba(0,230,118,0.22)] transition hover:bg-[#00C853] hover:text-black active:scale-[0.98] border-none"
+                  onClick={() => window.open(branch.href, "_blank")}
+                >
+                  <WhatsAppIcon />
+                  <span>{branch.name}</span>
+                </button>
+              ))}
             </div>
           </div>
+
+          {/* Google Review Button - Repositioned at the very bottom and centered */}
+          <Button
+            asChild
+            variant="outline"
+            className="mt-6 h-[58px] w-full rounded-2xl border-[#FFC107]/25 bg-white text-sm font-black text-black shadow-[0_18px_42px_rgba(255,255,255,0.14)] hover:bg-zinc-100 hover:text-black active:scale-[0.98]"
+          >
+            <Link to="/feedback" className="flex w-full h-full items-center justify-center gap-2.5 px-4">
+              <GoogleIcon />
+              <span>CALIFÍCANOS EN GOOGLE</span>
+              <Star className="h-4 w-4 fill-[#FFC107] text-[#FFC107]" />
+            </Link>
+          </Button>
         </div>
 
         <footer className="pb-1 text-center text-[11px] font-semibold text-white/28">

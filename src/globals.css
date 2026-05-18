@@ -138,4 +138,13 @@
   .glass {
     @apply bg-background/80 backdrop-blur-md border-white/10;
   }
+
+  /* Ocultar barra de desplazamiento */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
