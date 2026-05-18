@@ -76,7 +76,7 @@ export default function LandingPage() {
 
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-md flex-col px-5 pt-6 pb-4">
         <div className="flex flex-1 flex-col justify-center py-2">
-          <header className="flex items-center justify-between mb-7">
+          <header className="flex items-center justify-between mb-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[11px] font-black uppercase tracking-[0.22em] text-[#FFC107] shadow-2xl shadow-black/30 backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
               Bienvenido
@@ -86,20 +86,21 @@ export default function LandingPage() {
             </div>
           </header>
 
-          <div className="relative mx-auto mb-4 flex h-[clamp(160px,22vh,200px)] w-full max-w-[260px] items-center justify-center">
-            <div className="absolute inset-4 rounded-full bg-[#FFC107]/[0.12] blur-3xl" />
-            <img
-              src="/logo.png"
-              alt="Fatboy Logo"
-              className="relative h-full w-full object-contain drop-shadow-[0_24px_42px_rgba(0,0,0,0.72)]"
-            />
-          </div>
-
-
-          <div className="mb-6 text-center">
-            <h1 className="mt-1 text-[19px] font-black uppercase tracking-wide text-[#FFC107] whitespace-nowrap">
-              Venimos mejores y renovados.
-            </h1>
+          <div className="relative mx-auto mb-6 flex flex-col items-center justify-center w-full max-w-[390px]">
+            <div className="relative flex h-[clamp(234px,34vh,300px)] w-full items-center justify-center">
+              <div className="absolute inset-4 rounded-full bg-[#FFC107]/[0.12] blur-3xl" />
+              <img
+                src="/logo.png"
+                alt="Fatboy Logo"
+                className="relative h-full w-full object-contain drop-shadow-[0_24px_42px_rgba(0,0,0,0.72)]"
+              />
+            </div>
+            <span 
+              style={{ fontFamily: "'Caveat', cursive" }}
+              className="text-[30px] font-bold text-[#FFC107] -mt-[60px] relative z-10 rotate-[-2deg] drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)] tracking-wide whitespace-nowrap"
+            >
+              venimos mejores y renovados
+            </span>
           </div>
 
           <div className="space-y-5">
