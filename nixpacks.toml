@@ -1,0 +1,4 @@
+[phases.setup]
+# Pin a nixpkgs archive that provides Node 22.13.1 so Prisma 7.8.0
+# does not fail on Coolify's default Node 22.11.0 image resolution.
+nixpkgsArchive = "51ad838b03a05b1de6f9f2a0fffecee64a9788ee"
