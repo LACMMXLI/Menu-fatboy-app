@@ -1,21 +1,18 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { io } from 'socket.io-client';
 import type { Order, OrderItem } from '@/lib/types';
 import { toast } from 'sonner';
 
 const fetchOrders = async (branchId: string): Promise<Order[]> => {
-  const { data, error } = await supabase
-    .from('orders')
-    .select(`
-      *,
-      items:order_items(*)
-    `)
-    .eq('branch_id', branchId)
-    .order('created_at', { ascending: false });
-
-  if (error) throw new Error(error.message);
-  return data as Order[];
+  // Pass branchId if API filters by branch, for now API returns all or we can filter here
+  // Ideally update server to accept ?branchId=${branchId}
+  const response = await fetch(`/api/orders?branchId=${branchId}`);
+  if (!response.ok) throw new Error('Failed to fetch orders');
+  const data = await response.json();
+  
+  // Return orders filtered by branchId (temporary client-side filter until server filters)
+  return data.filter((o: Order) => o.branch_id === branchId) as Order[];
 };
 
 export const useOrders = (branchId: string | undefined) => {
@@ -30,47 +27,34 @@ export const useOrders = (branchId: string | undefined) => {
   useEffect(() => {
     if (!branchId) return;
 
-    const channel = supabase
-      .channel(`orders-branch-${branchId}`)
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'orders',
-          filter: `branch_id=eq.${branchId}`,
-        },
-        (payload) => {
-          console.log('Order Change:', payload);
-          queryClient.invalidateQueries({ queryKey: ['orders', branchId] });
-          
-          if (payload.eventType === 'INSERT') {
-            const newOrder = payload.new as Order;
-            toast.success(`¡Nuevo pedido de ${newOrder.customer_name}!`, {
-              description: 'Llegó un nuevo pedido a la sucursal.',
-              duration: 10000,
-            });
-            // Play sound notification
-            const audio = new Audio('/notification.mp3');
-            audio.play().catch(e => console.error("Error playing sound:", e));
-          }
-        }
-      )
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'order_items',
-        },
-        () => {
-          queryClient.invalidateQueries({ queryKey: ['orders', branchId] });
-        }
-      )
-      .subscribe();
+    // Conectar a Socket.io en el mismo dominio (o proxy local)
+    const socket = io();
+
+    socket.on('connect', () => {
+      socket.emit('join_orders');
+    });
+
+    socket.on('postgres_changes', (payload: any) => {
+      // Filtrar si el pedido es de esta sucursal
+      if (payload.new && payload.new.branch_id !== branchId) return;
+
+      console.log('Order Change via Socket:', payload);
+      queryClient.invalidateQueries({ queryKey: ['orders', branchId] });
+      
+      if (payload.eventType === 'INSERT') {
+        const newOrder = payload.new as Order;
+        toast.success(`¡Nuevo pedido de ${newOrder.customer_name}!`, {
+          description: 'Llegó un nuevo pedido a la sucursal.',
+          duration: 10000,
+        });
+        // Play sound notification
+        const audio = new Audio('/notification.mp3');
+        audio.play().catch(e => console.error("Error playing sound:", e));
+      }
+    });
 
     return () => {
-      supabase.removeChannel(channel);
+      socket.disconnect();
     };
   }, [branchId, queryClient]);
 
@@ -87,14 +71,15 @@ export const useUpdateOrderStatus = () => {
     if (status === 'finalizado') updateData.completed_at = new Date().toISOString();
     if (status === 'cancelado') updateData.cancelled_at = new Date().toISOString();
 
-    const { error } = await supabase
-      .from('orders')
-      .update(updateData)
-      .eq('id', orderId);
+    const response = await fetch(`/api/orders/${orderId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updateData)
+    });
 
-    if (error) {
+    if (!response.ok) {
       toast.error('Error al actualizar el pedido');
-      throw error;
+      throw new Error('Error al actualizar el pedido');
     }
 
     queryClient.invalidateQueries({ queryKey: ['orders', branchId] });
@@ -105,26 +90,21 @@ export const useCreateOrder = () => {
   const queryClient = useQueryClient();
 
   return async (order: Omit<Order, 'id' | 'created_at' | 'status' | 'items'>, items: Omit<OrderItem, 'id' | 'order_id'>[]) => {
-    // 1. Insert order
-    const { data: orderData, error: orderError } = await supabase
-      .from('orders')
-      .insert([order])
-      .select()
-      .single();
+    // El backend creará la orden y sus items al mismo tiempo en /api/orders
+    const payload = {
+      ...order,
+      items
+    };
 
-    if (orderError) throw orderError;
+    const response = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-    // 2. Insert order items
-    const itemsWithOrderId = items.map(item => ({
-      ...item,
-      order_id: orderData.id
-    }));
+    if (!response.ok) throw new Error('Error al crear orden');
 
-    const { error: itemsError } = await supabase
-      .from('order_items')
-      .insert(itemsWithOrderId);
-
-    if (itemsError) throw itemsError;
+    const orderData = await response.json();
 
     queryClient.invalidateQueries({ queryKey: ['orders', order.branch_id] });
     return orderData;
@@ -136,14 +116,13 @@ export const useClearOrderHistory = () => {
 
   return useMutation({
     mutationFn: async (branchId: string) => {
-      const { error } = await supabase
-        .from('orders')
-        .delete()
-        .eq('branch_id', branchId)
-        .in('status', ['finalizado', 'cancelado']);
+      // Necesitamos un endpoint en el backend para borrar historial, por ahora mockeado o implementar en index.ts
+      const response = await fetch(`/api/orders/history?branchId=${branchId}`, {
+        method: 'DELETE'
+      });
 
-      if (error) {
-        throw error;
+      if (!response.ok) {
+        throw new Error('Error clearing order history');
       }
     },
     onSuccess: (_, branchId) => {

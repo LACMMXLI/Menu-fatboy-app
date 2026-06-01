@@ -1,22 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
 import type { Category } from '@/lib/types';
 import { showSuccess, showError } from '@/utils/toast';
 
 // --- Fetch Logic ---
 const fetchCategories = async (): Promise<Category[]> => {
-  const { data, error } = await supabase
-    .from('categories')
-    .select('id, name, order, status')
-    .order('order', { ascending: true });
-
-  if (error) throw new Error(error.message);
+  const response = await fetch('/api/categories');
+  if (!response.ok) throw new Error('Failed to fetch categories');
+  const data = await response.json();
   
-  return data.map(c => ({
+  return data.map((c: any) => ({
     ...c,
     id: String(c.id),
     order: Number(c.order),
-    status: c.status as Category['status'],
+    status: c.status,
   })) as Category[];
 };
 
@@ -34,14 +30,13 @@ export const useAddCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (category: Omit<Category, 'id'>) => {
-      const { data, error } = await supabase
-        .from('categories')
-        .insert([{ name: category.name, order: category.order, status: category.status }])
-        .select()
-        .single();
-      
-      if (error) throw new Error(error.message);
-      return data;
+      const response = await fetch('/api/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(category)
+      });
+      if (!response.ok) throw new Error('Failed to create category');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
@@ -58,15 +53,13 @@ export const useUpdateCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (category: Category) => {
-      const { data, error } = await supabase
-        .from('categories')
-        .update({ name: category.name, order: category.order, status: category.status })
-        .eq('id', category.id)
-        .select()
-        .single();
-      
-      if (error) throw new Error(error.message);
-      return data;
+      const response = await fetch(`/api/categories/${category.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(category)
+      });
+      if (!response.ok) throw new Error('Failed to update category');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
@@ -83,12 +76,10 @@ export const useDeleteCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (categoryId: string) => {
-      const { error } = await supabase
-        .from('categories')
-        .delete()
-        .eq('id', categoryId);
-      
-      if (error) throw new Error(error.message);
+      const response = await fetch(`/api/categories/${categoryId}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Failed to delete category');
     },
     onSuccess: (_, categoryId) => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });

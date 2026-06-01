@@ -1,0 +1,332 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link [ref=e359] [cursor=pointer]:
+              - /url: /
+              - text: Coolify
+            - link [ref=e360] [cursor=pointer]:
+              - /url: https://github.com/coollabsio/coolify/releases/tag/v4.1.1
+              - text: v4.1.1
+          - button [ref=e361]:
+            - img [ref=e12]
+            - generic [ref=e14]: /
+          - button [ref=e362] [cursor=pointer]:
+            - img [ref=e363]
+            - generic [ref=e21]: 9+
+        - combobox [ref=e26]
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link [ref=e364] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e32]
+                  - generic [ref=e34]: Dashboard
+              - listitem [ref=e35]:
+                - link [ref=e365] [cursor=pointer]:
+                  - /url: /projects
+                  - img [ref=e37]
+                  - generic [ref=e42]: Projects
+              - listitem [ref=e43]:
+                - link [ref=e366] [cursor=pointer]:
+                  - /url: /servers
+                  - img [ref=e45]
+                  - generic [ref=e50]: Servers
+              - listitem [ref=e51]:
+                - link [ref=e367] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/sources
+                  - img [ref=e53]
+                  - generic [ref=e55]: Sources
+              - listitem [ref=e56]:
+                - link [ref=e368] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/destinations
+                  - img [ref=e58]
+                  - generic [ref=e60]: Destinations
+              - listitem [ref=e61]:
+                - link [ref=e369] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/storages
+                  - img [ref=e63]
+                  - generic [ref=e68]: S3 Storages
+              - listitem [ref=e69]:
+                - link [ref=e370] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/shared-variables
+                  - img [ref=e71]
+                  - generic [ref=e75]: Shared Variables
+              - listitem [ref=e76]:
+                - link [ref=e371] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/notifications/email
+                  - img [ref=e78]
+                  - generic [ref=e80]: Notifications
+              - listitem [ref=e81]:
+                - link [ref=e372] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/security/private-key
+                  - img [ref=e83]
+                  - generic [ref=e85]: Keys & Tokens
+              - listitem [ref=e86]:
+                - link [ref=e373] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/tags
+                  - img [ref=e88]
+                  - generic [ref=e92]: Tags
+              - listitem [ref=e93]:
+                - link [ref=e374] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/terminal
+                  - img [ref=e95]
+                  - generic [ref=e98]: Terminal
+              - listitem [ref=e99]:
+                - link [ref=e375] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/profile
+                  - img [ref=e101]
+                  - generic [ref=e106]: Profile
+              - listitem [ref=e107]:
+                - link [ref=e376] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/team
+                  - img [ref=e109]
+                  - generic [ref=e117]: Teams
+              - listitem [ref=e118]:
+                - link [ref=e377] [cursor=pointer]:
+                  - /url: /settings
+                  - img [ref=e120]
+                  - generic [ref=e124]: Settings
+              - listitem [ref=e125]:
+                - link [ref=e378] [cursor=pointer]:
+                  - /url: https://coolify.io/sponsorships
+                  - img [ref=e127]
+                  - generic [ref=e131]: Sponsor us
+              - listitem [ref=e132]:
+                - generic [ref=e379] [cursor=pointer]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Feedback
+              - listitem [ref=e139]:
+                - button [ref=e380]:
+                  - img [ref=e142]
+                  - generic [ref=e144]: Logout
+      - button [ref=e381]:
+        - img [ref=e146]
+    - main [ref=e148]:
+      - generic [ref=e149]:
+        - heading [level=1] [ref=e382]: Configuration
+        - navigation [ref=e151]:
+          - navigation [ref=e152]:
+            - list [ref=e153]:
+              - listitem [ref=e154]:
+                - generic [ref=e155]:
+                  - link [ref=e383] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se
+                    - text: menu fatboy
+                  - button [ref=e157]:
+                    - img [ref=e158]
+              - listitem [ref=e160]:
+                - generic [ref=e161]:
+                  - link [ref=e384] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3
+                    - text: production
+                  - button [ref=e163]:
+                    - img [ref=e164]
+              - listitem [ref=e166]:
+                - link [ref=e385] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+                  - text: menu-fatboy (localhost)
+              - generic [ref=e168]:
+                - generic [ref=e170]:
+                  - link [ref=e386] [cursor=pointer]:
+                    - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/ec7e45721374b514d9ce9709caad5410e09436a0
+                    - text: Running
+                  - generic [ref=e174]: (unknown)
+                  - img [ref=e178] [cursor=pointer]
+                - button [ref=e387]:
+                  - img [ref=e180]
+          - generic [ref=e182]:
+            - navigation [ref=e183]:
+              - link [ref=e388] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+                - text: Configuration
+              - link [ref=e389] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment
+                - text: Deployments
+              - link [ref=e390] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/logs
+                - generic [ref=e187]: Logs
+              - link [ref=e391] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/terminal
+                - text: Terminal
+              - button [ref=e392]:
+                - generic [ref=e192]: Links
+                - img [ref=e193]
+            - generic [ref=e196]:
+              - button [ref=e393]:
+                - generic [ref=e200]: Advanced
+                - img [ref=e201]
+              - generic [ref=e203]:
+                - button [ref=e394] [cursor=pointer]:
+                  - img [ref=e205]
+                  - text: Redeploy
+                - button [ref=e395] [cursor=pointer]:
+                  - img [ref=e208]
+                  - text: Restart
+                - button [ref=e396] [cursor=pointer]:
+                  - img [ref=e214]
+                  - text: Stop
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - link [ref=e397] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+              - generic [ref=e219]: General
+            - link [ref=e398] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/advanced
+              - generic [ref=e221]: Advanced
+            - link [ref=e399] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/environment-variables
+              - generic [ref=e223]: Environment Variables
+            - link [ref=e400] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/persistent-storage
+              - generic [ref=e225]: Persistent Storage
+            - link [ref=e401] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/source
+              - generic [ref=e227]: Git Source
+            - link [ref=e402] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/servers
+              - generic [ref=e229]: Servers
+            - link [ref=e403] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/scheduled-tasks
+              - generic [ref=e231]: Scheduled Tasks
+            - link [ref=e404] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/webhooks
+              - generic [ref=e233]: Webhooks
+            - link [ref=e405] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/preview-deployments
+              - generic [ref=e235]: Preview Deployments
+            - link [ref=e406] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/healthcheck
+              - generic [ref=e237]: Healthcheck
+            - link [ref=e407] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/rollback
+              - generic [ref=e239]: Rollback
+            - link [ref=e408] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/resource-limits
+              - generic [ref=e241]: Resource Limits
+            - link [ref=e409] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/resource-operations
+              - generic [ref=e243]: Resource Operations
+            - link [ref=e410] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/metrics
+              - generic [ref=e245]: Metrics
+            - link [ref=e411] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/tags
+              - generic [ref=e247]: Tags
+            - link [ref=e412] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/danger
+              - generic [ref=e249]: Danger Zone
+          - generic [ref=e251]:
+            - generic [ref=e252]:
+              - generic [ref=e253]:
+                - heading [level=2] [ref=e413]: Environment Variables
+                - button [ref=e414] [cursor=pointer]: + Add
+                - button [ref=e415] [cursor=pointer]: Developer view
+              - generic [ref=e259]: Environment variables (secrets) for this resource.
+              - generic [ref=e260]:
+                - generic [ref=e263]:
+                  - generic [ref=e264]:
+                    - text: Sort alphabetically
+                    - img [ref=e267] [cursor=pointer]
+                  - checkbox [ref=e416] [cursor=pointer]
+                - generic [ref=e272]:
+                  - generic [ref=e273]:
+                    - text: Use Docker Build Secrets
+                    - img [ref=e276] [cursor=pointer]
+                  - checkbox [ref=e417] [cursor=pointer]
+            - generic [ref=e279]:
+              - heading [level=3] [ref=e418]: Production Environment Variables
+              - generic [ref=e281]: Environment (secrets) variables for Production.
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - textbox [ref=e287]: NIXPACKS_NODE_VERSION
+                  - generic [ref=e290]:
+                    - button [ref=e419] [cursor=pointer]:
+                      - img [ref=e292]
+                    - textbox [ref=e296]: "22"
+                - generic [ref=e297]:
+                  - generic [ref=e298]:
+                    - text: Comment
+                    - img [ref=e301] [cursor=pointer]
+                  - textbox [ref=e303]
+              - generic [ref=e304]:
+                - generic [ref=e307]:
+                  - generic [ref=e308]:
+                    - text: Available at Runtime
+                    - img [ref=e311] [cursor=pointer]
+                  - checkbox [ref=e420] [cursor=pointer]
+                - generic [ref=e314]:
+                  - button [ref=e421] [cursor=pointer]: Update
+                  - button [ref=e422] [cursor=pointer]: Lock
+                  - button [ref=e423] [cursor=pointer]: Delete
+            - generic [ref=e319]:
+              - heading [level=3] [ref=e424]: Preview Deployments Environment Variables
+              - generic [ref=e321]: Environment (secrets) variables for Preview Deployments.
+            - generic [ref=e323]:
+              - generic [ref=e324]:
+                - generic [ref=e325]:
+                  - textbox [ref=e327]: NIXPACKS_NODE_VERSION
+                  - generic [ref=e330]:
+                    - button [ref=e425] [cursor=pointer]:
+                      - img [ref=e332]
+                    - textbox [ref=e336]: "22"
+                - generic [ref=e337]:
+                  - generic [ref=e338]:
+                    - text: Comment
+                    - img [ref=e341] [cursor=pointer]
+                  - textbox [ref=e343]
+              - generic [ref=e344]:
+                - generic [ref=e347]:
+                  - generic [ref=e348]:
+                    - text: Available at Runtime
+                    - img [ref=e351] [cursor=pointer]
+                  - checkbox [ref=e426] [cursor=pointer]
+                - generic [ref=e354]:
+                  - button [ref=e427] [cursor=pointer]: Update
+                  - button [ref=e428] [cursor=pointer]: Lock
+                  - button [ref=e429] [cursor=pointer]: Delete
+  - generic [ref=e432]:
+    - generic [ref=e433]:
+      - heading "New Environment Variable" [level=3] [ref=e434]
+      - button [ref=e435]:
+        - img [ref=e436]
+    - generic [ref=e439]:
+      - generic [ref=e440]:
+        - generic [ref=e441]:
+          - text: Name
+          - generic [ref=e442]: "*"
+        - textbox "NODE_ENV" [active] [ref=e443]
+      - generic [ref=e445]:
+        - generic [ref=e446]:
+          - text: Value
+          - generic [ref=e447]: "*"
+        - textbox "production" [ref=e449]
+      - generic [ref=e450]: "Tip: Type {{ to reference a shared environment variable"
+      - generic [ref=e451]:
+        - generic [ref=e452]:
+          - text: Comment
+          - img [ref=e455] [cursor=pointer]
+        - textbox [ref=e457]
+      - generic [ref=e459]:
+        - generic [ref=e460]:
+          - text: Available at Buildtime
+          - img [ref=e463] [cursor=pointer]
+        - checkbox "Available at Buildtime" [checked] [ref=e465] [cursor=pointer]
+      - generic [ref=e467]:
+        - generic [ref=e468]:
+          - text: Available at Runtime
+          - img [ref=e471] [cursor=pointer]
+        - checkbox "Available at Runtime" [checked] [ref=e473] [cursor=pointer]
+      - generic [ref=e475]:
+        - generic [ref=e476]:
+          - text: Is Literal?
+          - img [ref=e479] [cursor=pointer]
+        - checkbox "Is Literal?" [ref=e481] [cursor=pointer]
+      - generic [ref=e483]:
+        - generic [ref=e484]: Is Multiline?
+        - checkbox "Is Multiline?" [ref=e485] [cursor=pointer]
+      - button "Save" [ref=e486] [cursor=pointer]

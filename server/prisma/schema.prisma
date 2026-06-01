@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  order     Int       @default(0)
+  status    String    @default("active") // "active" or "inactive"
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id               String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String
+  price            Float
+  categoryId       String      @db.Uuid
+  category         Category    @relation(fields: [categoryId], references: [id])
+  status           String      @default("active") // "active" or "inactive"
+  description      String?
+  shortDescription String?     @map("short_description")
+  order            Int         @default(0)
+  isPromotion      Boolean     @default(false) @map("is_promotion")
+  imageUrl         String?     @map("image_url")
+  orderItems       OrderItem[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@map("products")
+}
+
+model Branch {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  phone     String
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("branches")
+}
+
+model Order {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  branchId        String      @map("branch_id") @db.Uuid
+  branch          Branch      @relation(fields: [branchId], references: [id])
+  customerName    String      @map("customer_name")
+  customerPhone   String?     @map("customer_phone")
+  paymentMethod   String      @map("payment_method") // "cash" or "card"
+  deliveryMethod  String      @map("delivery_method") // "pickup"
+  total           Float
+  status          String      @default("nuevo") // "nuevo", "impreso", "finalizado", "cancelado"
+  notes           String?
+  items           OrderItem[]
+  createdAt       DateTime    @default(now()) @map("created_at")
+  printedAt       DateTime?   @map("printed_at")
+  completedAt     DateTime?   @map("completed_at")
+  cancelledAt     DateTime?   @map("cancelled_at")
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  orderId   String   @map("order_id") @db.Uuid
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String   @map("product_id") @db.Uuid
+  product   Product  @relation(fields: [productId], references: [id])
+  name      String
+  quantity  Int
+  price     Float
+  notes     String?
+  
+  @@map("order_items")
+}
+
+model Review {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  branch     String?
+  rating     Int
+  comment    String?
+  status     String?  @default("active")
+  priority   String?  @default("normal")
+  source     String?  @default("web")
+  deviceHash String?  @map("device_hash")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("reviews")
+}

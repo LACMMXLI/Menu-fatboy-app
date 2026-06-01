@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
+
 import { generateDeviceHash } from "@/utils/hash";
 
 const RATING_TEXT = {
@@ -55,9 +55,10 @@ export default function FeedbackPage() {
       const userAgent = navigator.userAgent;
       const deviceHash = await generateDeviceHash(userAgent);
 
-      const { error } = await supabase
-        .from("reviews")
-        .insert({
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           branch: normalizedBranch,
           rating,
           comment,
@@ -65,9 +66,10 @@ export default function FeedbackPage() {
           status: "pending",
           priority: rating <= 2 ? "high" : "normal",
           source: "web"
-        });
+        })
+      });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error("Error al enviar la opinión");
 
       const googleUrl = normalizedBranch === "venecia" 
         ? "https://search.google.com/local/writereview?placeid=ChIJi0vnrExx14ARCFbYG3xvPqo" 

@@ -1,27 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
 import type { Product } from '@/lib/types';
 import { showSuccess, showError } from '@/utils/toast';
 
 // --- Fetch Logic ---
 const fetchProducts = async (): Promise<Product[]> => {
-  const { data, error } = await supabase
-    .from('products')
-    .select('id, name, price, category_id, status, description, order, is_promotion, short_description, image_url'); // Incluir image_url
-
-  if (error) throw new Error(error.message);
+  const response = await fetch('/api/products');
+  if (!response.ok) throw new Error('Failed to fetch products');
+  const data = await response.json();
   
-  return data.map(p => ({
-    id: String(p.id),
+  return data.map((p: any) => ({
+    id: p.id,
     name: p.name,
-    price: Number(p.price),
-    categoryId: String(p.category_id),
-    status: p.status as Product['status'],
-    description: p.description || undefined,
-    shortDescription: p.short_description || undefined,
-    order: Number(p.order || 999),
-    isPromotion: p.is_promotion || false,
-    imageUrl: p.image_url || undefined, // Mapear el nuevo campo
+    price: p.price,
+    categoryId: p.categoryId,
+    status: p.status,
+    description: p.description,
+    shortDescription: p.shortDescription,
+    order: p.order,
+    isPromotion: p.isPromotion,
+    imageUrl: p.imageUrl,
   })) as Product[];
 };
 
@@ -39,24 +36,13 @@ export const useAddProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: Omit<Product, 'id'>) => {
-      const { data, error } = await supabase
-        .from('products')
-        .insert([{ 
-          name: product.name, 
-          price: product.price, 
-          category_id: product.categoryId, 
-          status: product.status, 
-          description: product.description,
-          short_description: product.shortDescription,
-          order: product.order,
-          is_promotion: product.isPromotion,
-          image_url: product.imageUrl // Incluir image_url
-        }])
-        .select()
-        .single();
-      
-      if (error) throw new Error(error.message);
-      return data;
+      const response = await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+      if (!response.ok) throw new Error('Failed to create product');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
@@ -73,25 +59,13 @@ export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: Product) => {
-      const { data, error } = await supabase
-        .from('products')
-        .update({ 
-          name: product.name, 
-          price: product.price, 
-          category_id: product.categoryId, 
-          status: product.status, 
-          description: product.description,
-          short_description: product.shortDescription,
-          order: product.order,
-          is_promotion: product.isPromotion,
-          image_url: product.imageUrl // Incluir image_url
-        })
-        .eq('id', product.id)
-        .select()
-        .single();
-      
-      if (error) throw new Error(error.message);
-      return data;
+      const response = await fetch(`/api/products/${product.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+      if (!response.ok) throw new Error('Failed to update product');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
@@ -108,12 +82,10 @@ export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (productId: string) => {
-      const { error } = await supabase
-        .from('products')
-        .delete()
-        .eq('id', productId);
-      
-      if (error) throw new Error(error.message);
+      const response = await fetch(`/api/products/${productId}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) throw new Error('Failed to delete product');
     },
     onSuccess: (_, productId) => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
