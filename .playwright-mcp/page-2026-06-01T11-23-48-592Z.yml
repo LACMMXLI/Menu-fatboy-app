@@ -1,0 +1,17 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - paragraph [ref=e4]: "404"
+    - heading "How did you get here?" [level=1] [ref=e5]
+    - paragraph [ref=e6]: Sorry, we couldn't find the page you're looking for.
+    - generic [ref=e7]:
+      - link "Go back" [ref=e8] [cursor=pointer]:
+        - /url: https://coolify.fatboymexicali.com/app/4a2fc55e255e39add99f9c200595043fc05603397d8d648a1f8e5dbdadadad5d?client=js&flash=false&protocol=7&version=8.4.0
+        - button "Go back" [ref=e9]
+      - link "Dashboard" [ref=e10] [cursor=pointer]:
+        - /url: https://coolify.fatboymexicali.com
+        - button "Dashboard" [ref=e11]
+      - link "Contact support" [ref=e12] [cursor=pointer]:
+        - /url: https://coolify.io/docs/contact
+        - text: Contact support
+        - img [ref=e13]
+  - img

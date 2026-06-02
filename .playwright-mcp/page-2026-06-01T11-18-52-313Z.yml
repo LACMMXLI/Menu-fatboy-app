@@ -1,0 +1,206 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link "Coolify" [ref=e8] [cursor=pointer]:
+              - /url: /
+            - link "v4.1.1" [ref=e9] [cursor=pointer]:
+              - /url: https://github.com/coollabsio/coolify/releases/tag/v4.1.1
+          - button / [ref=e11]:
+            - img [ref=e12]
+            - generic [ref=e14]: /
+          - button "Preferences 9+" [ref=e18] [cursor=pointer]:
+            - img "Preferences" [ref=e19]
+            - generic [ref=e21]: 9+
+        - combobox [ref=e26]:
+          - option "Switch team" [disabled]
+          - option "Root Team" [selected]
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "Dashboard" [ref=e31] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e32]
+                  - generic [ref=e34]: Dashboard
+              - listitem [ref=e35]:
+                - link "Projects" [ref=e36] [cursor=pointer]:
+                  - /url: /projects
+                  - img [ref=e37]
+                  - generic [ref=e42]: Projects
+              - listitem [ref=e43]:
+                - link "Servers" [ref=e44] [cursor=pointer]:
+                  - /url: /servers
+                  - img [ref=e45]
+                  - generic [ref=e50]: Servers
+              - listitem [ref=e51]:
+                - link "Sources" [ref=e52] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/sources
+                  - img [ref=e53]
+                  - generic [ref=e55]: Sources
+              - listitem [ref=e56]:
+                - link "Destinations" [ref=e57] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/destinations
+                  - img [ref=e58]
+                  - generic [ref=e60]: Destinations
+              - listitem [ref=e61]:
+                - link "S3 Storages" [ref=e62] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/storages
+                  - img [ref=e63]
+                  - generic [ref=e68]: S3 Storages
+              - listitem [ref=e69]:
+                - link "Shared Variables" [ref=e70] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/shared-variables
+                  - img [ref=e71]
+                  - generic [ref=e75]: Shared Variables
+              - listitem [ref=e76]:
+                - link "Notifications" [ref=e77] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/notifications/email
+                  - img [ref=e78]
+                  - generic [ref=e80]: Notifications
+              - listitem [ref=e81]:
+                - link "Keys & Tokens" [ref=e82] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/security/private-key
+                  - img [ref=e83]
+                  - generic [ref=e85]: Keys & Tokens
+              - listitem [ref=e86]:
+                - link "Tags" [ref=e87] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/tags
+                  - img [ref=e88]
+                  - generic [ref=e92]: Tags
+              - listitem [ref=e93]:
+                - link "Terminal" [ref=e94] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/terminal
+                  - img [ref=e95]
+                  - generic [ref=e98]: Terminal
+              - listitem [ref=e99]:
+                - link "Profile" [ref=e100] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/profile
+                  - img [ref=e101]
+                  - generic [ref=e106]: Profile
+              - listitem [ref=e107]:
+                - link "Teams" [ref=e108] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/team
+                  - img [ref=e109]
+                  - generic [ref=e117]: Teams
+              - listitem [ref=e118]:
+                - link "Settings" [ref=e119] [cursor=pointer]:
+                  - /url: /settings
+                  - img [ref=e120]
+                  - generic [ref=e124]: Settings
+              - generic:
+                - listitem:
+                  - generic "No upgrade available"
+              - listitem [ref=e125]:
+                - link "Sponsor us" [ref=e126] [cursor=pointer]:
+                  - /url: https://coolify.io/sponsorships
+                  - img [ref=e127]
+                  - generic [ref=e131]: Sponsor us
+              - listitem [ref=e132]:
+                - generic "Send us feedback or get help!" [ref=e135] [cursor=pointer]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Feedback
+              - listitem [ref=e139]:
+                - button "Logout" [ref=e141]:
+                  - img [ref=e142]
+                  - generic [ref=e144]: Logout
+      - button "Collapse sidebar" [ref=e145]:
+        - img [ref=e146]
+    - main [ref=e148]:
+      - generic [ref=e149]:
+        - heading "Logs" [level=1] [ref=e150]
+        - navigation [ref=e151]:
+          - navigation [ref=e152]:
+            - list [ref=e153]:
+              - listitem [ref=e154]:
+                - generic [ref=e155]:
+                  - link "menu fatboy" [ref=e156] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se
+                  - button [ref=e157]:
+                    - img [ref=e158]
+              - listitem [ref=e160]:
+                - generic [ref=e161]:
+                  - link "production" [ref=e162] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3
+                  - button [ref=e163]:
+                    - img [ref=e164]
+              - listitem [ref=e166]:
+                - link "menu-fatboy (localhost)" [ref=e167] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+              - generic [ref=e168]:
+                - generic [ref=e170]:
+                  - link "Running" [ref=e173] [cursor=pointer]:
+                    - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/924fa1e9d909a07ee38c407d632423a8602721e6
+                  - generic [ref=e174]: (unknown)
+                  - img [ref=e178] [cursor=pointer]
+                - button "Refresh Status" [ref=e179]:
+                  - img [ref=e180]
+          - generic [ref=e182]:
+            - navigation [ref=e183]:
+              - link "Configuration" [ref=e184] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+              - link "Deployments" [ref=e185] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment
+              - link "Logs" [ref=e186] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/logs
+                - generic [ref=e187]: Logs
+              - link "Terminal" [ref=e188] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/terminal
+              - button "Links" [ref=e191]:
+                - generic [ref=e192]: Links
+                - img [ref=e193]
+            - generic [ref=e196]:
+              - button "Advanced" [ref=e199]:
+                - generic [ref=e200]: Advanced
+                - img [ref=e201]
+              - generic [ref=e203]:
+                - button "Redeploy" [ref=e204] [cursor=pointer]:
+                  - img [ref=e205]
+                  - text: Redeploy
+                - button "Restart" [ref=e207] [cursor=pointer]:
+                  - img [ref=e208]
+                  - text: Restart
+                - button "Stop" [ref=e213] [cursor=pointer]:
+                  - img [ref=e214]
+                  - text: Stop
+        - generic [ref=e216]:
+          - heading "Logs" [level=2] [ref=e217]
+          - generic [ref=e219]:
+            - 'heading "Server: localhost" [level=4] [ref=e220]'
+            - generic [ref=e222]:
+              - generic [ref=e223] [cursor=pointer]:
+                - img [ref=e224]
+                - heading "n48tafhd4pix8su3g53sr20n-080114130149" [level=4] [ref=e226]
+              - generic [ref=e228]:
+                - generic [ref=e229]:
+                  - generic [ref=e231]:
+                    - generic: "Lines:"
+                    - spinbutton "Number of Lines (max 50,000)" [ref=e232]: "100"
+                  - generic [ref=e233]:
+                    - generic [ref=e234]:
+                      - img [ref=e235]
+                      - textbox "Find in logs" [ref=e237]
+                    - generic [ref=e238]:
+                      - button "Refresh Logs" [ref=e239]:
+                        - img [ref=e240]
+                      - button "Stream Logs" [ref=e242]:
+                        - img [ref=e243]
+                      - button "Copy Logs" [ref=e245]:
+                        - img [ref=e246]
+                      - button "Download Logs" [ref=e249]:
+                        - img [ref=e250]
+                      - button "Toggle Timestamps" [ref=e252]:
+                        - img [ref=e253]
+                      - button "Toggle Log Colors" [ref=e255]:
+                        - img [ref=e256]
+                      - button "Filter Log Levels" [ref=e259]:
+                        - img [ref=e260]
+                      - button "Follow Logs" [ref=e262]:
+                        - img [ref=e263]
+                      - button "Fullscreen" [ref=e265]:
+                        - img [ref=e266]
+                - generic [ref=e271]: No logs yet.
+  - img
+  - list

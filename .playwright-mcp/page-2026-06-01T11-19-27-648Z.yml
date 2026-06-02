@@ -1,0 +1,426 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link "Coolify" [ref=e8] [cursor=pointer]:
+              - /url: /
+            - link "v4.1.1" [ref=e9] [cursor=pointer]:
+              - /url: https://github.com/coollabsio/coolify/releases/tag/v4.1.1
+          - button / [ref=e11]:
+            - img [ref=e12]
+            - generic [ref=e14]: /
+          - button "Preferences 9+" [ref=e18] [cursor=pointer]:
+            - img "Preferences" [ref=e19]
+            - generic [ref=e21]: 9+
+        - combobox [ref=e26]:
+          - option "Switch team" [disabled]
+          - option "Root Team" [selected]
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "Dashboard" [ref=e31] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e32]
+                  - generic [ref=e34]: Dashboard
+              - listitem [ref=e35]:
+                - link "Projects" [ref=e36] [cursor=pointer]:
+                  - /url: /projects
+                  - img [ref=e37]
+                  - generic [ref=e42]: Projects
+              - listitem [ref=e43]:
+                - link "Servers" [ref=e44] [cursor=pointer]:
+                  - /url: /servers
+                  - img [ref=e45]
+                  - generic [ref=e50]: Servers
+              - listitem [ref=e51]:
+                - link "Sources" [ref=e52] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/sources
+                  - img [ref=e53]
+                  - generic [ref=e55]: Sources
+              - listitem [ref=e56]:
+                - link "Destinations" [ref=e57] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/destinations
+                  - img [ref=e58]
+                  - generic [ref=e60]: Destinations
+              - listitem [ref=e61]:
+                - link "S3 Storages" [ref=e62] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/storages
+                  - img [ref=e63]
+                  - generic [ref=e68]: S3 Storages
+              - listitem [ref=e69]:
+                - link "Shared Variables" [ref=e70] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/shared-variables
+                  - img [ref=e71]
+                  - generic [ref=e75]: Shared Variables
+              - listitem [ref=e76]:
+                - link "Notifications" [ref=e77] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/notifications/email
+                  - img [ref=e78]
+                  - generic [ref=e80]: Notifications
+              - listitem [ref=e81]:
+                - link "Keys & Tokens" [ref=e82] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/security/private-key
+                  - img [ref=e83]
+                  - generic [ref=e85]: Keys & Tokens
+              - listitem [ref=e86]:
+                - link "Tags" [ref=e87] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/tags
+                  - img [ref=e88]
+                  - generic [ref=e92]: Tags
+              - listitem [ref=e93]:
+                - link "Terminal" [ref=e94] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/terminal
+                  - img [ref=e95]
+                  - generic [ref=e98]: Terminal
+              - listitem [ref=e99]:
+                - link "Profile" [ref=e100] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/profile
+                  - img [ref=e101]
+                  - generic [ref=e106]: Profile
+              - listitem [ref=e107]:
+                - link "Teams" [ref=e108] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/team
+                  - img [ref=e109]
+                  - generic [ref=e117]: Teams
+              - listitem [ref=e118]:
+                - link "Settings" [ref=e119] [cursor=pointer]:
+                  - /url: /settings
+                  - img [ref=e120]
+                  - generic [ref=e124]: Settings
+              - generic:
+                - listitem:
+                  - generic "No upgrade available"
+              - listitem [ref=e125]:
+                - link "Sponsor us" [ref=e126] [cursor=pointer]:
+                  - /url: https://coolify.io/sponsorships
+                  - img [ref=e127]
+                  - generic [ref=e131]: Sponsor us
+              - listitem [ref=e132]:
+                - generic "Send us feedback or get help!" [ref=e135] [cursor=pointer]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Feedback
+              - listitem [ref=e139]:
+                - button "Logout" [ref=e141]:
+                  - img [ref=e142]
+                  - generic [ref=e144]: Logout
+      - button "Collapse sidebar" [ref=e145]:
+        - img [ref=e146]
+    - main [ref=e148]:
+      - generic [ref=e149]:
+        - heading "Deployments" [level=1] [ref=e150]
+        - navigation [ref=e151]:
+          - navigation [ref=e152]:
+            - list [ref=e153]:
+              - listitem [ref=e154]:
+                - generic [ref=e155]:
+                  - link "menu fatboy" [ref=e156] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se
+                  - button [ref=e157]:
+                    - img [ref=e158]
+              - listitem [ref=e160]:
+                - generic [ref=e161]:
+                  - link "production" [ref=e162] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3
+                  - button [ref=e163]:
+                    - img [ref=e164]
+              - listitem [ref=e166]:
+                - link "menu-fatboy (localhost)" [ref=e167] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+              - generic [ref=e168]:
+                - generic [ref=e170]:
+                  - link "Running" [ref=e173] [cursor=pointer]:
+                    - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/924fa1e9d909a07ee38c407d632423a8602721e6
+                  - generic [ref=e174]: (unknown)
+                  - img [ref=e178] [cursor=pointer]
+                - button "Refresh Status" [ref=e179]:
+                  - img [ref=e180]
+          - generic [ref=e182]:
+            - navigation [ref=e183]:
+              - link "Configuration" [ref=e184] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+              - link "Deployments" [ref=e185] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment
+              - link "Logs" [ref=e186] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/logs
+                - generic [ref=e187]: Logs
+              - link "Terminal" [ref=e188] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/terminal
+              - button "Links" [ref=e191]:
+                - generic [ref=e192]: Links
+                - img [ref=e193]
+            - generic [ref=e196]:
+              - button "Advanced" [ref=e199]:
+                - generic [ref=e200]: Advanced
+                - img [ref=e201]
+              - generic [ref=e203]:
+                - button "Redeploy" [ref=e204] [cursor=pointer]:
+                  - img [ref=e205]
+                  - text: Redeploy
+                - button "Restart" [ref=e207] [cursor=pointer]:
+                  - img [ref=e208]
+                  - text: Restart
+                - button "Stop" [ref=e213] [cursor=pointer]:
+                  - img [ref=e214]
+                  - text: Stop
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - heading "Deployments (11)" [level=2] [ref=e218]
+            - generic [ref=e219]:
+              - button [disabled] [ref=e220]:
+                - img [ref=e221]
+              - generic [ref=e223]: Page 1 of 2
+              - button [ref=e224] [cursor=pointer]:
+                - img [ref=e225]
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e229]: Pull Request Id
+              - spinbutton [ref=e230]
+            - button "Filter" [ref=e231] [cursor=pointer]
+          - generic [ref=e232]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/whzkvmpgq02zk5o5d49ny0b4
+            - generic [ref=e233]:
+              - 'link "Success Started: 2026-06-01 08:01:14 UTC Ended: 2026-06-01 08:18:30 UTC Duration: 17m 16s Finished 3 hours ago" [ref=e234] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/whzkvmpgq02zk5o5d49ny0b4
+                - generic [ref=e236]: Success
+                - generic [ref=e237]:
+                  - text: "Started: 2026-06-01 08:01:14 UTC"
+                  - text: "Ended: 2026-06-01 08:18:30 UTC"
+                  - text: "Duration: 17m 16s"
+                  - text: Finished 3 hours ago
+              - generic [ref=e238]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/whzkvmpgq02zk5o5d49ny0b4
+                - generic [ref=e239]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/whzkvmpgq02zk5o5d49ny0b4
+                  - generic [ref=e240]:
+                    - link "Commit:" [ref=e241] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/whzkvmpgq02zk5o5d49ny0b4
+                    - link "924fa1e" [ref=e242] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/924fa1e9d909a07ee38c407d632423a8602721e6
+                    - generic [ref=e243]: "-"
+                    - 'link "build: configure nixpacks and node engine requirements for prisma 7.8.0 compatibility" [ref=e244] [cursor=pointer]':
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/924fa1e9d909a07ee38c407d632423a8602721e6
+                    - generic [ref=e245]: Manual
+          - generic [ref=e246]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d10yk0ak2peg7myb9w15fhcc
+            - generic [ref=e247]:
+              - 'link "Cancelled Started: 2026-06-01 07:59:41 UTC" [ref=e248] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d10yk0ak2peg7myb9w15fhcc
+                - generic [ref=e250]: Cancelled
+                - generic [ref=e251]: "Started: 2026-06-01 07:59:41 UTC"
+              - generic [ref=e252]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d10yk0ak2peg7myb9w15fhcc
+                - generic [ref=e253]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d10yk0ak2peg7myb9w15fhcc
+                  - generic [ref=e254]:
+                    - link "Commit:" [ref=e255] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d10yk0ak2peg7myb9w15fhcc
+                    - link "bcbf3e3" [ref=e256] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/bcbf3e35f136f8c8547991a203f82d270f9db866
+                    - generic [ref=e257]: Manual
+          - generic [ref=e258]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/m30j4kdzxkgvqfjz1khcu4qw
+            - generic [ref=e259]:
+              - 'link "Failed Started: 2026-06-01 07:40:28 UTC Ended: 2026-06-01 07:55:29 UTC Duration: 15m 01s Finished 3 hours ago" [ref=e260] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/m30j4kdzxkgvqfjz1khcu4qw
+                - generic [ref=e262]: Failed
+                - generic [ref=e263]:
+                  - text: "Started: 2026-06-01 07:40:28 UTC"
+                  - text: "Ended: 2026-06-01 07:55:29 UTC"
+                  - text: "Duration: 15m 01s"
+                  - text: Finished 3 hours ago
+              - generic [ref=e264]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/m30j4kdzxkgvqfjz1khcu4qw
+                - generic [ref=e265]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/m30j4kdzxkgvqfjz1khcu4qw
+                  - generic [ref=e266]:
+                    - link "Commit:" [ref=e267] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/m30j4kdzxkgvqfjz1khcu4qw
+                    - link "bcbf3e3" [ref=e268] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/bcbf3e35f136f8c8547991a203f82d270f9db866
+                    - generic [ref=e269]: "-"
+                    - 'link "feat: initialize server package.json with express, prisma, and socket.io dependencies" [ref=e270] [cursor=pointer]':
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/bcbf3e35f136f8c8547991a203f82d270f9db866
+                    - generic [ref=e271]: Manual
+          - generic [ref=e272]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/lmq62wj5p79vjm3esvweivlb
+            - generic [ref=e273]:
+              - 'link "Cancelled Started: 2026-06-01 07:39:25 UTC" [ref=e274] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/lmq62wj5p79vjm3esvweivlb
+                - generic [ref=e276]: Cancelled
+                - generic [ref=e277]: "Started: 2026-06-01 07:39:25 UTC"
+              - generic [ref=e278]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/lmq62wj5p79vjm3esvweivlb
+                - generic [ref=e279]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/lmq62wj5p79vjm3esvweivlb
+                  - generic [ref=e280]:
+                    - link "Commit:" [ref=e281] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/lmq62wj5p79vjm3esvweivlb
+                    - link "bcbf3e3" [ref=e282] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/bcbf3e35f136f8c8547991a203f82d270f9db866
+                    - generic [ref=e283]: "-"
+                    - 'link "feat: initialize server package.json with express, prisma, and socket.io dependencies" [ref=e284] [cursor=pointer]':
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/bcbf3e35f136f8c8547991a203f82d270f9db866
+                    - generic [ref=e285]: Manual
+          - generic [ref=e286]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/y136czxjd6c00j69rddw0oyr
+            - generic [ref=e287]:
+              - 'link "Cancelled Started: 2026-06-01 07:38:35 UTC" [ref=e288] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/y136czxjd6c00j69rddw0oyr
+                - generic [ref=e290]: Cancelled
+                - generic [ref=e291]: "Started: 2026-06-01 07:38:35 UTC"
+              - generic [ref=e292]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/y136czxjd6c00j69rddw0oyr
+                - generic [ref=e293]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/y136czxjd6c00j69rddw0oyr
+                  - generic [ref=e294]:
+                    - link "Commit:" [ref=e295] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/y136czxjd6c00j69rddw0oyr
+                    - link "93c33bb" [ref=e296] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/93c33bbd9cae46f0e819ec91b60a251fbfd9c8ab
+                    - generic [ref=e297]: Manual
+          - generic [ref=e298]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/h3v3g0yxup4h6o6fp68mnm6l
+            - generic [ref=e299]:
+              - 'link "Failed Started: 2026-06-01 05:03:54 UTC Ended: 2026-06-01 05:21:34 UTC Duration: 17m 40s Finished 5 hours ago" [ref=e300] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/h3v3g0yxup4h6o6fp68mnm6l
+                - generic [ref=e302]: Failed
+                - generic [ref=e303]:
+                  - text: "Started: 2026-06-01 05:03:54 UTC"
+                  - text: "Ended: 2026-06-01 05:21:34 UTC"
+                  - text: "Duration: 17m 40s"
+                  - text: Finished 5 hours ago
+              - generic [ref=e304]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/h3v3g0yxup4h6o6fp68mnm6l
+                - generic [ref=e305]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/h3v3g0yxup4h6o6fp68mnm6l
+                  - generic [ref=e306]:
+                    - link "Commit:" [ref=e307] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/h3v3g0yxup4h6o6fp68mnm6l
+                    - link "61c9c83" [ref=e308] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/61c9c834b617753c98f112e746838b2cc9dd12ca
+                    - generic [ref=e309]: "-"
+                    - 'link "fix: add prisma generate and db push to build script" [ref=e310] [cursor=pointer]':
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/61c9c834b617753c98f112e746838b2cc9dd12ca
+                    - generic [ref=e311]: Manual
+          - generic [ref=e312]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/vnxwil1qfdxers6e65l5tid9
+            - generic [ref=e313]:
+              - 'link "Success Started: 2026-05-31 03:39:17 UTC Ended: 2026-05-31 03:42:23 UTC Duration: 03m 06s Finished 1 day ago" [ref=e314] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/vnxwil1qfdxers6e65l5tid9
+                - generic [ref=e316]: Success
+                - generic [ref=e317]:
+                  - text: "Started: 2026-05-31 03:39:17 UTC"
+                  - text: "Ended: 2026-05-31 03:42:23 UTC"
+                  - text: "Duration: 03m 06s"
+                  - text: Finished 1 day ago
+              - generic [ref=e318]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/vnxwil1qfdxers6e65l5tid9
+                - generic [ref=e319]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/vnxwil1qfdxers6e65l5tid9
+                  - generic [ref=e320]:
+                    - link "Commit:" [ref=e321] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/vnxwil1qfdxers6e65l5tid9
+                    - link "ec7e457" [ref=e322] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/ec7e45721374b514d9ce9709caad5410e09436a0
+                    - generic [ref=e323]: "-"
+                    - 'link "feat: implement Progressive Web App support with service worker and manifest configuration" [ref=e324] [cursor=pointer]':
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/ec7e45721374b514d9ce9709caad5410e09436a0
+                    - generic [ref=e325]: Manual
+          - generic [ref=e326]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d8vrvtkf6rgbcinvr1j0ixii
+            - generic [ref=e327]:
+              - 'link "Success Started: 2026-05-31 01:44:34 UTC Ended: 2026-05-31 01:44:40 UTC Duration: 00m 06s Finished 1 day ago" [ref=e328] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d8vrvtkf6rgbcinvr1j0ixii
+                - generic [ref=e330]: Success
+                - generic [ref=e331]:
+                  - text: "Started: 2026-05-31 01:44:34 UTC"
+                  - text: "Ended: 2026-05-31 01:44:40 UTC"
+                  - text: "Duration: 00m 06s"
+                  - text: Finished 1 day ago
+              - generic [ref=e332]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d8vrvtkf6rgbcinvr1j0ixii
+                - generic [ref=e333]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d8vrvtkf6rgbcinvr1j0ixii
+                  - generic [ref=e334]:
+                    - link "Commit:" [ref=e335] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/d8vrvtkf6rgbcinvr1j0ixii
+                    - link "f8d312e" [ref=e336] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/f8d312efc09e19d519a48fe4c28c7dfe39c1b4d5
+                    - generic [ref=e337]: Manual
+          - generic [ref=e338]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/c36s29orxkrmv7m6wqhnvyxs
+            - generic [ref=e339]:
+              - 'link "Success Started: 2026-05-31 01:36:43 UTC Ended: 2026-05-31 01:36:48 UTC Duration: 00m 05s Finished 1 day ago" [ref=e340] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/c36s29orxkrmv7m6wqhnvyxs
+                - generic [ref=e342]: Success
+                - generic [ref=e343]:
+                  - text: "Started: 2026-05-31 01:36:43 UTC"
+                  - text: "Ended: 2026-05-31 01:36:48 UTC"
+                  - text: "Duration: 00m 05s"
+                  - text: Finished 1 day ago
+              - generic [ref=e344]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/c36s29orxkrmv7m6wqhnvyxs
+                - generic [ref=e345]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/c36s29orxkrmv7m6wqhnvyxs
+                  - generic [ref=e346]:
+                    - link "Commit:" [ref=e347] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/c36s29orxkrmv7m6wqhnvyxs
+                    - link "f8d312e" [ref=e348] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/f8d312efc09e19d519a48fe4c28c7dfe39c1b4d5
+                    - generic [ref=e349]: Manual
+          - generic [ref=e350]:
+            - link:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/n654b9bxjm53lbi13if7u5p8
+            - generic [ref=e351]:
+              - 'link "Success Started: 2026-05-31 01:34:48 UTC Ended: 2026-05-31 01:34:55 UTC Duration: 00m 07s Finished 1 day ago" [ref=e352] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/n654b9bxjm53lbi13if7u5p8
+                - generic [ref=e354]: Success
+                - generic [ref=e355]:
+                  - text: "Started: 2026-05-31 01:34:48 UTC"
+                  - text: "Ended: 2026-05-31 01:34:55 UTC"
+                  - text: "Duration: 00m 07s"
+                  - text: Finished 1 day ago
+              - generic [ref=e356]:
+                - link:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/n654b9bxjm53lbi13if7u5p8
+                - generic [ref=e357]:
+                  - link:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/n654b9bxjm53lbi13if7u5p8
+                  - generic [ref=e358]:
+                    - link "Commit:" [ref=e359] [cursor=pointer]:
+                      - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/deployment/n654b9bxjm53lbi13if7u5p8
+                    - link "f8d312e" [ref=e360] [cursor=pointer]:
+                      - /url: https://github.com/LACMMXLI/Menu-fatboy-app/commit/f8d312efc09e19d519a48fe4c28c7dfe39c1b4d5
+                    - generic [ref=e361]: Manual
+  - img
+  - list

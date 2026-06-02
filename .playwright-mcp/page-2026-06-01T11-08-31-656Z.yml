@@ -1,0 +1,337 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link [ref=e413] [cursor=pointer]:
+              - /url: /
+              - text: Coolify
+            - link [ref=e414] [cursor=pointer]:
+              - /url: https://github.com/coollabsio/coolify/releases/tag/v4.1.1
+              - text: v4.1.1
+          - button [ref=e415]:
+            - img [ref=e12]
+            - generic [ref=e14]: /
+          - button [ref=e416] [cursor=pointer]:
+            - img [ref=e417]
+            - generic [ref=e21]: 9+
+        - combobox [ref=e26]
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link [ref=e418] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e32]
+                  - generic [ref=e34]: Dashboard
+              - listitem [ref=e35]:
+                - link [ref=e419] [cursor=pointer]:
+                  - /url: /projects
+                  - img [ref=e37]
+                  - generic [ref=e42]: Projects
+              - listitem [ref=e43]:
+                - link [ref=e420] [cursor=pointer]:
+                  - /url: /servers
+                  - img [ref=e45]
+                  - generic [ref=e50]: Servers
+              - listitem [ref=e51]:
+                - link [ref=e421] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/sources
+                  - img [ref=e53]
+                  - generic [ref=e55]: Sources
+              - listitem [ref=e56]:
+                - link [ref=e422] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/destinations
+                  - img [ref=e58]
+                  - generic [ref=e60]: Destinations
+              - listitem [ref=e61]:
+                - link [ref=e423] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/storages
+                  - img [ref=e63]
+                  - generic [ref=e68]: S3 Storages
+              - listitem [ref=e69]:
+                - link [ref=e424] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/shared-variables
+                  - img [ref=e71]
+                  - generic [ref=e75]: Shared Variables
+              - listitem [ref=e76]:
+                - link [ref=e425] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/notifications/email
+                  - img [ref=e78]
+                  - generic [ref=e80]: Notifications
+              - listitem [ref=e81]:
+                - link [ref=e426] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/security/private-key
+                  - img [ref=e83]
+                  - generic [ref=e85]: Keys & Tokens
+              - listitem [ref=e86]:
+                - link [ref=e427] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/tags
+                  - img [ref=e88]
+                  - generic [ref=e92]: Tags
+              - listitem [ref=e93]:
+                - link [ref=e428] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/terminal
+                  - img [ref=e95]
+                  - generic [ref=e98]: Terminal
+              - listitem [ref=e99]:
+                - link [ref=e429] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/profile
+                  - img [ref=e101]
+                  - generic [ref=e106]: Profile
+              - listitem [ref=e107]:
+                - link [ref=e430] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/team
+                  - img [ref=e109]
+                  - generic [ref=e117]: Teams
+              - listitem [ref=e118]:
+                - link [ref=e431] [cursor=pointer]:
+                  - /url: /settings
+                  - img [ref=e120]
+                  - generic [ref=e124]: Settings
+              - listitem [ref=e125]:
+                - link [ref=e432] [cursor=pointer]:
+                  - /url: https://coolify.io/sponsorships
+                  - img [ref=e127]
+                  - generic [ref=e131]: Sponsor us
+              - listitem [ref=e132]:
+                - generic [ref=e433] [cursor=pointer]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Feedback
+              - listitem [ref=e139]:
+                - button [ref=e434]:
+                  - img [ref=e142]
+                  - generic [ref=e144]: Logout
+      - button [ref=e435]:
+        - img [ref=e146]
+    - main [ref=e148]:
+      - generic [ref=e149]:
+        - heading [level=1] [ref=e436]: Configuration
+        - navigation [ref=e151]:
+          - navigation [ref=e152]:
+            - list [ref=e153]:
+              - listitem [ref=e154]:
+                - generic [ref=e155]:
+                  - link [ref=e437] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se
+                    - text: menu fatboy
+                  - button [ref=e157]:
+                    - img [ref=e158]
+              - listitem [ref=e160]:
+                - generic [ref=e161]:
+                  - link [ref=e438] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3
+                    - text: production
+                  - button [ref=e163]:
+                    - img [ref=e164]
+              - listitem [ref=e166]:
+                - link [ref=e439] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj
+                  - text: fatboy-menu-postgres (localhost)
+              - generic [ref=e168]:
+                - generic [ref=e170]:
+                  - generic [ref=e172]: Running
+                  - generic [ref=e173]: (healthy)
+                - button [ref=e440]:
+                  - img [ref=e175]
+          - generic [ref=e177]:
+            - navigation [ref=e178]:
+              - link [ref=e441] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj
+                - text: Configuration
+              - link [ref=e442] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/logs
+                - text: Logs
+              - link [ref=e443] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/terminal
+                - text: Terminal
+              - link [ref=e444] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/backups
+                - text: Backups
+            - generic [ref=e184]:
+              - button [ref=e445] [cursor=pointer]:
+                - img [ref=e187]
+                - text: Restart
+              - button [ref=e446] [cursor=pointer]:
+                - img [ref=e193]
+                - text: Stop
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - link [ref=e447] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj
+              - generic [ref=e198]: General
+            - link [ref=e448] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/environment-variables
+              - generic [ref=e200]: Environment Variables
+            - link [ref=e449] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/servers
+              - generic [ref=e202]: Servers
+            - link [ref=e450] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/persistent-storage
+              - generic [ref=e204]: Persistent Storage
+            - link [ref=e451] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/import-backup
+              - generic [ref=e206]: Import Backup
+            - link [ref=e452] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/webhooks
+              - generic [ref=e208]: Webhooks
+            - link [ref=e453] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/resource-limits
+              - generic [ref=e210]: Resource Limits
+            - link [ref=e454] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/resource-operations
+              - generic [ref=e212]: Resource Operations
+            - link [ref=e455] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/metrics
+              - generic [ref=e214]: Metrics
+            - link [ref=e456] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/tags
+              - generic [ref=e216]: Tags
+            - link [ref=e457] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/danger
+              - generic [ref=e218]: Danger Zone
+          - generic [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - heading [level=2] [ref=e458]: General
+                - button [ref=e459] [cursor=pointer]: Save
+              - generic [ref=e225]:
+                - generic [ref=e226]:
+                  - generic [ref=e227]: Name
+                  - textbox [ref=e366]: fatboy-menu-postgres
+                - generic [ref=e229]:
+                  - generic [ref=e230]: Description
+                  - textbox [ref=e367]
+                - generic [ref=e232]:
+                  - generic [ref=e233]:
+                    - text: Image
+                    - generic [ref=e234]: "*"
+                    - img [ref=e237] [cursor=pointer]
+                  - textbox [ref=e368]: postgres:16-alpine
+              - generic [ref=e240]: If you change the values in the database, please sync it here, otherwise automations (like backups) won't work.
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - generic [ref=e243]:
+                    - text: Username
+                    - img [ref=e246] [cursor=pointer]
+                  - textbox [ref=e460]:
+                    - /placeholder: "If empty: postgres"
+                    - text: fatboy_menu_user
+                - generic [ref=e249]:
+                  - generic [ref=e250]:
+                    - text: Password
+                    - generic [ref=e251]: "*"
+                    - img [ref=e254] [cursor=pointer]
+                  - generic [ref=e256]:
+                    - button [ref=e461] [cursor=pointer]:
+                      - img [ref=e258]
+                    - textbox [ref=e370]: qCOc4TLRlbtp22QArdADWO1LXsl6tLxqLBau9E0wXMZdrDUEOkYWP4BgbSOsV9fy
+                - generic [ref=e263]:
+                  - generic [ref=e264]:
+                    - text: Initial Database
+                    - img [ref=e267] [cursor=pointer]
+                  - textbox [ref=e462]:
+                    - /placeholder: If empty, it will be the same as Username.
+                    - text: fatboy_menu
+              - generic [ref=e270]:
+                - generic [ref=e271]:
+                  - generic [ref=e272]: Initial Database Arguments
+                  - textbox [ref=e463]:
+                    - /placeholder: If empty, use default. See in docker docs.
+                - generic [ref=e274]:
+                  - generic [ref=e275]: Host Auth Method
+                  - textbox [ref=e464]:
+                    - /placeholder: If empty, use default. See in docker docs.
+              - generic [ref=e277]:
+                - generic [ref=e278]:
+                  - text: Custom Docker Options
+                  - img [ref=e281] [cursor=pointer]
+                - textbox [ref=e465]:
+                  - /placeholder: "--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
+              - generic [ref=e284]:
+                - heading [level=3] [ref=e466]: Network
+                - generic [ref=e287]:
+                  - generic [ref=e288]:
+                    - text: Ports Mappings
+                    - img [ref=e291] [cursor=pointer]
+                  - textbox [ref=e467]:
+                    - /placeholder: 3000:5432
+                - generic [ref=e294]:
+                  - generic [ref=e295]:
+                    - text: Postgres URL (internal)
+                    - img [ref=e298] [cursor=pointer]
+                  - generic [ref=e300]:
+                    - button [ref=e468] [cursor=pointer]:
+                      - img [ref=e302]
+                    - textbox [ref=e376]: postgres://fatboy_menu_user:qCOc4TLRlbtp22QArdADWO1LXsl6tLxqLBau9E0wXMZdrDUEOkYWP4BgbSOsV9fy@angl1i15b98htg5fzwp69jvj:5432/fatboy_menu
+                - generic [ref=e377]:
+                  - generic [ref=e378]:
+                    - text: Postgres URL (public)
+                    - img [ref=e381] [cursor=pointer]
+                  - generic [ref=e383]:
+                    - button [ref=e469] [cursor=pointer]:
+                      - img [ref=e385]
+                    - textbox [ref=e389]: postgres://fatboy_menu_user:qCOc4TLRlbtp22QArdADWO1LXsl6tLxqLBau9E0wXMZdrDUEOkYWP4BgbSOsV9fy@177.226.64.14:5432/fatboy_menu
+              - heading [level=3] [ref=e470]: SSL Configuration
+              - generic [ref=e311]:
+                - generic [ref=e314]:
+                  - generic [ref=e315]:
+                    - generic [ref=e316]: Enable SSL
+                    - img [ref=e319] [cursor=pointer]
+                  - checkbox [disabled] [ref=e471]
+                - generic [ref=e322]:
+                  - generic [ref=e323]:
+                    - heading [level=3] [ref=e472]: Proxy
+                    - button [ref=e473] [cursor=pointer]: Logs
+                  - generic [ref=e327]:
+                    - generic [ref=e328]: Make it publicly available
+                    - checkbox [checked] [ref=e474] [cursor=pointer]
+                  - generic [ref=e330]:
+                    - generic [ref=e331]:
+                      - generic [ref=e332]: Public Port
+                      - spinbutton [disabled] [ref=e394]: "5432"
+                    - generic [ref=e334]:
+                      - generic [ref=e335]:
+                        - text: Proxy Timeout (seconds)
+                        - img [ref=e338] [cursor=pointer]
+                      - spinbutton [disabled] [ref=e395]: "3600"
+                - generic [ref=e342]:
+                  - generic [ref=e343]: Custom PostgreSQL Configuration
+                  - textbox [ref=e396]
+            - generic [ref=e345]:
+              - heading [level=3] [ref=e475]: Advanced
+              - generic [ref=e349]:
+                - generic [ref=e350]:
+                  - text: Drain Logs
+                  - img [ref=e353] [cursor=pointer]
+                - checkbox [ref=e476] [cursor=pointer]
+              - generic [ref=e356]:
+                - generic [ref=e357]:
+                  - heading [level=3] [ref=e477]: Initialization scripts
+                  - button [ref=e478] [cursor=pointer]: + Add
+                - generic [ref=e362]: No initialization scripts found.
+  - list [ref=e398]
+  - generic [ref=e481]:
+    - generic [ref=e482]:
+      - heading "Confirm Database Restart?" [level=3] [ref=e483]
+      - button [active] [ref=e484]:
+        - img [ref=e485]
+    - generic [ref=e488]:
+      - generic [ref=e490]:
+        - img [ref=e492]
+        - generic [ref=e494]:
+          - generic [ref=e495]: Warning
+          - generic [ref=e496]: This operation is permanent and cannot be undone. Please think again before proceeding!
+      - generic [ref=e497]: "The following actions will be performed:"
+      - list [ref=e498]:
+        - listitem [ref=e499]:
+          - img [ref=e500]
+          - generic [ref=e502]: This database will be unavailable during the restart.
+        - listitem [ref=e503]:
+          - img [ref=e504]
+          - generic [ref=e506]: If the database is currently in use data could be lost.
+      - generic [ref=e507]:
+        - button "Cancel" [ref=e508] [cursor=pointer]
+        - button "Restart Database" [ref=e509] [cursor=pointer]:
+          - generic [ref=e510]: Restart Database
