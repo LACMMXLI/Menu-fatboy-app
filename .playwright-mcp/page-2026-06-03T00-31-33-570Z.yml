@@ -1,0 +1,181 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link "Coolify" [ref=e8] [cursor=pointer]:
+              - /url: /
+            - link "v4.1.1" [ref=e9] [cursor=pointer]:
+              - /url: https://github.com/coollabsio/coolify/releases/tag/v4.1.1
+          - button / [ref=e11]:
+            - img [ref=e12]
+            - generic [ref=e14]: /
+          - button "Preferences 9+" [ref=e18] [cursor=pointer]:
+            - img "Preferences" [ref=e19]
+            - generic [ref=e21]: 9+
+        - combobox [ref=e26]:
+          - option "Switch team" [disabled]
+          - option "Root Team" [selected]
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - list [ref=e29]:
+              - listitem [ref=e30]:
+                - link "Dashboard" [ref=e31] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e32]
+                  - generic [ref=e34]: Dashboard
+              - listitem [ref=e35]:
+                - link "Projects" [ref=e36] [cursor=pointer]:
+                  - /url: /projects
+                  - img [ref=e37]
+                  - generic [ref=e42]: Projects
+              - listitem [ref=e43]:
+                - link "Servers" [ref=e44] [cursor=pointer]:
+                  - /url: /servers
+                  - img [ref=e45]
+                  - generic [ref=e50]: Servers
+              - listitem [ref=e51]:
+                - link "Sources" [ref=e52] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/sources
+                  - img [ref=e53]
+                  - generic [ref=e55]: Sources
+              - listitem [ref=e56]:
+                - link "Destinations" [ref=e57] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/destinations
+                  - img [ref=e58]
+                  - generic [ref=e60]: Destinations
+              - listitem [ref=e61]:
+                - link "S3 Storages" [ref=e62] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/storages
+                  - img [ref=e63]
+                  - generic [ref=e68]: S3 Storages
+              - listitem [ref=e69]:
+                - link "Shared Variables" [ref=e70] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/shared-variables
+                  - img [ref=e71]
+                  - generic [ref=e75]: Shared Variables
+              - listitem [ref=e76]:
+                - link "Notifications" [ref=e77] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/notifications/email
+                  - img [ref=e78]
+                  - generic [ref=e80]: Notifications
+              - listitem [ref=e81]:
+                - link "Keys & Tokens" [ref=e82] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/security/private-key
+                  - img [ref=e83]
+                  - generic [ref=e85]: Keys & Tokens
+              - listitem [ref=e86]:
+                - link "Tags" [ref=e87] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/tags
+                  - img [ref=e88]
+                  - generic [ref=e92]: Tags
+              - listitem [ref=e93]:
+                - link "Terminal" [ref=e94] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/terminal
+                  - img [ref=e95]
+                  - generic [ref=e98]: Terminal
+              - listitem [ref=e99]:
+                - link "Profile" [ref=e100] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/profile
+                  - img [ref=e101]
+                  - generic [ref=e106]: Profile
+              - listitem [ref=e107]:
+                - link "Teams" [ref=e108] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/team
+                  - img [ref=e109]
+                  - generic [ref=e117]: Teams
+              - listitem [ref=e118]:
+                - link "Settings" [ref=e119] [cursor=pointer]:
+                  - /url: /settings
+                  - img [ref=e120]
+                  - generic [ref=e124]: Settings
+              - generic:
+                - listitem:
+                  - generic "No upgrade available"
+              - listitem [ref=e125]:
+                - link "Sponsor us" [ref=e126] [cursor=pointer]:
+                  - /url: https://coolify.io/sponsorships
+                  - img [ref=e127]
+                  - generic [ref=e131]: Sponsor us
+              - listitem [ref=e132]:
+                - generic "Send us feedback or get help!" [ref=e135] [cursor=pointer]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: Feedback
+              - listitem [ref=e139]:
+                - button "Logout" [ref=e141]:
+                  - img [ref=e142]
+                  - generic [ref=e144]: Logout
+      - button "Collapse sidebar" [ref=e145]:
+        - img [ref=e146]
+    - main [ref=e148]:
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e151]:
+            - heading "Resources" [level=1] [ref=e152]
+            - link "+ New" [ref=e153] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/new
+            - link "Clone" [ref=e154] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/clone
+            - button "Delete Environment" [ref=e156] [cursor=pointer]
+          - navigation [ref=e157]:
+            - list [ref=e158]:
+              - listitem [ref=e159]:
+                - generic [ref=e160]:
+                  - link "menu fatboy" [ref=e161] [cursor=pointer]:
+                    - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se
+                  - button [ref=e162]:
+                    - img [ref=e163]
+              - listitem [ref=e164]:
+                - link "production" [ref=e166] [cursor=pointer]:
+                  - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3
+        - generic [ref=e167]:
+          - textbox "Search for name, fqdn..." [ref=e169]
+          - heading "Applications" [level=2] [ref=e170]
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - 'link "menu-fatboy running https://menu.fatboymexicali.com Server: localhost" [ref=e173] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n
+                - generic [ref=e174]:
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: menu-fatboy
+                    - generic "running" [ref=e178]
+                  - generic [ref=e179]: https://menu.fatboymexicali.com
+                  - generic [ref=e180]: "Server: localhost"
+              - link "Add tag" [ref=e182] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/n48tafhd4pix8su3g53sr20n/tags
+            - generic [ref=e183]:
+              - 'link "servermenu running https://serverbakendmenu.fatboymexicali.com Server: localhost" [ref=e184] [cursor=pointer]':
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/en4nljjpd52jjfqs8ofl0x5q
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: servermenu
+                    - generic "running" [ref=e189]
+                  - generic [ref=e190]: https://serverbakendmenu.fatboymexicali.com
+                  - generic [ref=e191]: "Server: localhost"
+              - link "Add tag" [ref=e193] [cursor=pointer]:
+                - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/application/en4nljjpd52jjfqs8ofl0x5q/tags
+          - heading "Databases" [level=2] [ref=e194]
+          - generic [ref=e196]:
+            - 'link "fatboy-menu-postgres running Server: localhost" [ref=e197] [cursor=pointer]':
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj
+              - generic [ref=e198]:
+                - generic [ref=e199]:
+                  - generic [ref=e200]: fatboy-menu-postgres
+                  - generic "running" [ref=e202]
+                - generic [ref=e203]: "Server: localhost"
+            - link "Add tag" [ref=e205] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/database/angl1i15b98htg5fzwp69jvj/tags
+          - heading "Services" [level=2] [ref=e206]
+          - generic [ref=e208]:
+            - 'link "fatboy-menu-storage degraded Server: localhost" [ref=e209] [cursor=pointer]':
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/service/x6xgag9e03mvnip18bz9dula
+              - generic [ref=e210]:
+                - generic [ref=e211]:
+                  - generic [ref=e212]: fatboy-menu-storage
+                  - generic "degraded" [ref=e214]
+                - generic [ref=e215]: "Server: localhost"
+            - link "Add tag" [ref=e217] [cursor=pointer]:
+              - /url: https://coolify.fatboymexicali.com/project/tilvwf12d47blryh6tdnl2se/environment/zi3bnm7ombmcic3iq9tpr4l3/service/x6xgag9e03mvnip18bz9dula/tags
+  - img
+  - list

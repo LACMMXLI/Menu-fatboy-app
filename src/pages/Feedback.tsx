@@ -1,3 +1,4 @@
+import { API_URL } from '@/lib/config';
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,7 +56,7 @@ export default function FeedbackPage() {
       const userAgent = navigator.userAgent;
       const deviceHash = await generateDeviceHash(userAgent);
 
-      const response = await fetch('/api/reviews', {
+      const response = await fetch(`${API_URL}/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,3 +1,4 @@
+import { API_URL } from '@/lib/config';
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { io } from 'socket.io-client';
@@ -7,7 +8,7 @@ import { toast } from 'sonner';
 const fetchOrders = async (branchId: string): Promise<Order[]> => {
   // Pass branchId if API filters by branch, for now API returns all or we can filter here
   // Ideally update server to accept ?branchId=${branchId}
-  const response = await fetch(`/api/orders?branchId=${branchId}`);
+  const response = await fetch(`${API_URL}/api/orders?branchId=${branchId}`);
   if (!response.ok) throw new Error('Failed to fetch orders');
   const data = await response.json();
   
@@ -28,7 +29,7 @@ export const useOrders = (branchId: string | undefined) => {
     if (!branchId) return;
 
     // Conectar a Socket.io en el mismo dominio (o proxy local)
-    const socket = io();
+    const socket = io(API_URL || undefined);
 
     socket.on('connect', () => {
       socket.emit('join_orders');
@@ -71,7 +72,7 @@ export const useUpdateOrderStatus = () => {
     if (status === 'finalizado') updateData.completed_at = new Date().toISOString();
     if (status === 'cancelado') updateData.cancelled_at = new Date().toISOString();
 
-    const response = await fetch(`/api/orders/${orderId}`, {
+    const response = await fetch(`${API_URL}/api/orders/${orderId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updateData)
@@ -96,7 +97,7 @@ export const useCreateOrder = () => {
       items
     };
 
-    const response = await fetch('/api/orders', {
+    const response = await fetch(`${API_URL}/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -117,7 +118,7 @@ export const useClearOrderHistory = () => {
   return useMutation({
     mutationFn: async (branchId: string) => {
       // Necesitamos un endpoint en el backend para borrar historial, por ahora mockeado o implementar en index.ts
-      const response = await fetch(`/api/orders/history?branchId=${branchId}`, {
+      const response = await fetch(`${API_URL}/api/orders/history?branchId=${branchId}`, {
         method: 'DELETE'
       });
 

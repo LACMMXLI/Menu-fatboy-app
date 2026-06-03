@@ -1,10 +1,11 @@
+import { API_URL } from '@/lib/config';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { Product } from '@/lib/types';
 import { showSuccess, showError } from '@/utils/toast';
 
 // --- Fetch Logic ---
 const fetchProducts = async (): Promise<Product[]> => {
-  const response = await fetch('/api/products');
+  const response = await fetch(`${API_URL}/api/products');
   if (!response.ok) throw new Error('Failed to fetch products');
   const data = await response.json();
   
@@ -36,7 +37,7 @@ export const useAddProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: Omit<Product, 'id'>) => {
-      const response = await fetch('/api/products', {
+      const response = await fetch(`${API_URL}/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product)
@@ -59,7 +60,7 @@ export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: Product) => {
-      const response = await fetch(`/api/products/${product.id}`, {
+      const response = await fetch(`${API_URL}/api/products/${product.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(product)
@@ -82,7 +83,7 @@ export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (productId: string) => {
-      const response = await fetch(`/api/products/${productId}`, {
+      const response = await fetch(`${API_URL}/api/products/${productId}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Failed to delete product');
